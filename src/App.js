@@ -17,7 +17,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+const navItems = ['Home', 'Artists', 'News', 'Top Songs', 'Social', 'About', 'Contact us'];
 
 function App() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -29,7 +29,7 @@ function App() {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+      Menu
       </Typography>
       <Divider />
       <List>
@@ -62,7 +62,7 @@ function App() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            T-POP Megaverse
           </Typography>
           <Typography
             variant="h5"
@@ -75,7 +75,7 @@ function App() {
               textDecoration: 'none',
             }}
           >
-            MUI
+            T-POP Megaverse
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (

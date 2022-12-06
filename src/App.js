@@ -117,9 +117,8 @@ function App() {
 
   return (
     <>
-    
     <Backdrop
-        sx={{ backgroundColor: 'rgba(255,255,255,0.4)', zIndex: 1000 }}
+        sx={{ backgroundColor: 'rgba(255,255,255,0.4)', zIndex: 1500 }}
         open={loadsession}
         >
         <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' />

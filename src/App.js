@@ -98,28 +98,12 @@ function App() {
     setMobileOpen(!mobileOpen);
   };
 
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-      Menu
-      </Typography>
-      <Divider />
-      <List>
-        {(langselect == 'en' ?navItemsEn:navItemsTh).map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
+ 
 
   return (
     <Box>
       <AppBar component="nav">
-        <Toolbar disableGutters>
+        <Toolbar disableGutters sx={{justifyContent: 'space-between !important'}}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -221,7 +205,21 @@ function App() {
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
         >
-          {drawer}
+          <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+      <Typography variant="h6" sx={{ my: 2 }}>
+      Menu
+      </Typography>
+      <Divider />
+      <List>
+        {(langselect == 'en' ?navItemsEn:navItemsTh).map((item) => (
+          <ListItem key={item} disablePadding>
+            <ListItemButton sx={{ textAlign: 'center' }}>
+              <ListItemText primary={item} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
         </Drawer>
       </Box>
       <Box component="main" sx={{ p: 3 }}>

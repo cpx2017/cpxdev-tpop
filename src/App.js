@@ -101,7 +101,7 @@ function App() {
  
 
   return (
-    <Box>
+    <Box sx={{display: 'flex'}}>
       <AppBar component="nav">
         <Toolbar disableGutters sx={{justifyContent: 'space-between !important'}}>
           <IconButton

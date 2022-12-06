@@ -137,9 +137,9 @@ function App() {
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 0, ml: 5, mr:2 }}>
+          <Box sx={{ flexGrow: 0, ml: 5 }} className='text-right'>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>

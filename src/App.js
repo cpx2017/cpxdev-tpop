@@ -99,7 +99,7 @@ function App() {
   return (
     <Box sx={{ display: 'flex' }}>
       <AppBar component="nav">
-        <Toolbar disableGutters>
+        <Toolbar disableGutters sx={{justifyContent: 'space-between !important'}}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -137,7 +137,7 @@ function App() {
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 0, ml: 5 }} className='text-right'>
+          <Box sx={{ flexGrow: 0, mr: 2 }} className='text-right'>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -207,7 +207,7 @@ function App() {
       <Box component="main" sx={{ p: 3 }}>
         <Toolbar />
         <Typography>
-          {pagedetail[langselect].desc}
+          {/* {pagedetail[langselect].desc} */}
         </Typography>
       </Box>
     </Box>

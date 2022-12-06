@@ -64,6 +64,18 @@ function App() {
     };
   }, []);
 
+  React.useEffect(() => {
+    localStorage.setItem('tpoplang', langselect)
+  }, [langselect]);
+
+  React.useEffect(() => {
+    if (localStorage.getItem('tpoplang') != null) {
+      setLang(localStorage.getItem('tpoplang'))
+    } else {
+      localStorage.setItem('tpoplang', langselect)
+    }
+  }, [])
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };

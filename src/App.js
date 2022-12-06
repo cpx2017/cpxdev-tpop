@@ -102,6 +102,12 @@ function App() {
 
   return (
     <Box sx={{display: 'flex'}}>
+    <Backdrop
+      sx={{ backgroundColor: 'rgba(255,255,255,0.4)', zIndex: 1500 }}
+      open={loadsession}
+      >
+      <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' width='60px' />
+      </Backdrop>
       <AppBar component="nav">
         <Toolbar disableGutters sx={{justifyContent: 'space-between !important'}}>
           <IconButton
@@ -227,12 +233,6 @@ function App() {
         <Typography>
           {pagedetail[langselect].desc}
         </Typography>
-      <Backdrop
-        sx={{ backgroundColor: 'rgba(255,255,255,0.4)', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={loadsession}
-        >
-        <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' width='60px' />
-        </Backdrop>
       </Box>
     </Box>
   );

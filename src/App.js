@@ -22,6 +22,8 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
+import {Backdrop} from '@mui/material';
+
 import pagedetail from './menulist/App.json'
 
 const drawerWidth = 240;
@@ -45,6 +47,8 @@ function App() {
   const [width, setRealwidth] = React.useState(window.innerWidth);
   const [langselect, setLang] = React.useState('en');
 
+  const [loadsession, setLoad] = React.useState(true);
+
   
   React.useEffect(() => {
     function handleWindowResize() {
@@ -52,7 +56,9 @@ function App() {
     }
 
     window.addEventListener('resize', handleWindowResize);
-
+    fetch('https://api.cpxdev.tk/home/status')
+      .then((response) => response.text())
+      .then((data) => setLoad(false));
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
@@ -210,6 +216,12 @@ function App() {
           {pagedetail[langselect].desc}
         </Typography>
       </Box>
+      <Backdrop
+        sx={{ backgroundColor: 'rgba(255,255,255,0.4)', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loadsession}
+        >
+        <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' />
+        </Backdrop>
     </Box>
   );
 }

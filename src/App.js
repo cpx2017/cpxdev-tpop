@@ -64,9 +64,6 @@ function App() {
     };
   }, []);
 
-  React.useEffect(() => {
-    localStorage.setItem('tpoplang', langselect)
-  }, [langselect]);
 
   React.useEffect(() => {
     if (localStorage.getItem('tpoplang') != null) {
@@ -75,6 +72,10 @@ function App() {
       localStorage.setItem('tpoplang', langselect)
     }
   }, [])
+  
+  React.useEffect(() => {
+    localStorage.setItem('tpoplang', langselect)
+  }, [langselect]);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);

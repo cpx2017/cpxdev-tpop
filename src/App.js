@@ -103,7 +103,7 @@ function App() {
   return (
     <Box sx={{display: 'flex'}}>
     <Backdrop
-      sx={{ backgroundColor: 'rgba(255,255,255,0.4)', zIndex: 1500 }}
+      sx={{ backgroundColor: 'rgba(255,255,255,0.4)', zIndex: 1500, position: 'fixed' }}
       open={loadsession}
       >
       <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' width='60px' />

@@ -58,7 +58,7 @@ function App() {
     window.addEventListener('resize', handleWindowResize);
     fetch('https://api.cpxdev.tk/home/status')
       .then((response) => response.text())
-      .then((data) => setLoad(false));
+      .then((data) => ;
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };

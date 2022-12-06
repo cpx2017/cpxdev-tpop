@@ -15,6 +15,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+
 import TextField from '@mui/material/TextField';
 
 import Menu from '@mui/material/Menu';
@@ -116,7 +117,7 @@ function App() {
   );
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box>
       <AppBar component="nav">
         <Toolbar disableGutters sx={{justifyContent: 'space-between !important'}}>
           <IconButton
@@ -228,14 +229,15 @@ function App() {
         <Typography>
           {pagedetail[langselect].desc}
         </Typography>
-      </Box>
       <Backdrop
-        sx={{ color: 'rgba(255,255,255,0.4)', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        sx={{ backgroundColor: 'rgba(255,255,255,0.4)', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={loadsession}
         >
         <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' />
         </Backdrop>
+      </Box>
     </Box>
   );
 }
-export default App;
+
+export default App

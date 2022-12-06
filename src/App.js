@@ -119,7 +119,7 @@ function App() {
   return (
     <Box>
       <AppBar component="nav">
-        <Toolbar disableGutters sx={{justifyContent: 'space-between !important'}}>
+        <Toolbar disableGutters>
           <IconButton
             color="inherit"
             aria-label="open drawer"

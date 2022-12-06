@@ -116,13 +116,6 @@ function App() {
   );
 
   return (
-    <>
-    <Backdrop
-        sx={{ backgroundColor: 'rgba(255,255,255,0.4)', zIndex: 1500 }}
-        open={loadsession}
-        >
-        <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' />
-        </Backdrop>
     <Box sx={{ display: 'flex' }}>
       <AppBar component="nav">
         <Toolbar disableGutters sx={{justifyContent: 'space-between !important'}}>
@@ -236,8 +229,13 @@ function App() {
           {pagedetail[langselect].desc}
         </Typography>
       </Box>
+      <Backdrop
+        sx={{ color: 'rgba(255,255,255,0.4)', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loadsession}
+        >
+        <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' />
+        </Backdrop>
     </Box>
-    </>
   );
 }
 export default App;

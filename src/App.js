@@ -231,7 +231,7 @@ function App() {
         sx={{ backgroundColor: 'rgba(255,255,255,0.4)', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={loadsession}
         >
-        <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' />
+        <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' width='60px' />
         </Backdrop>
       </Box>
     </Box>

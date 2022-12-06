@@ -111,7 +111,7 @@ function App() {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, ml:1, display: { sm: 'none' } }}
+            sx={{ mr: 1, ml:1, display: { sm: 'none' } }}
           >
             <MenuIcon />
           </IconButton>

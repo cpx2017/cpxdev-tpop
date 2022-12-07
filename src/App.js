@@ -23,7 +23,7 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-import {Backdrop} from '@mui/material';
+import {Backdrop, Paper} from '@mui/material';
 
 import {
   BrowserRouter,
@@ -57,9 +57,14 @@ function App() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [width, setRealwidth] = React.useState(window.innerWidth);
   const [langselect, setLang] = React.useState('en');
+  const ref = React.useRef(null)
+  const [footerHeight, setFooterH] = React.useState(0)
+
+  const [login, setLogin] = React.useState('');
 
   const [loadsession, setLoad] = React.useState(true);
 
+  console.log(ref)
   
   React.useEffect(() => {
     function handleWindowResize() {
@@ -75,6 +80,9 @@ function App() {
     };
   }, []);
 
+  React.useEffect(() => {
+    setFooterH(ref.current.clientHeight)
+  })
 
   React.useEffect(() => {
     if (localStorage.getItem('tpoplang') != null) {
@@ -199,11 +207,15 @@ function App() {
                     ))}
                   </TextField>
                 </MenuItem>
-              {(langselect == 'en' ?settingsEn:settingsTh).map((setting) => (
+              {login != '' ? (langselect == 'en' ?settingsEn:settingsTh).map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
-              ))}
+              )) : (
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{langselect == 'en' ? 'You are not Login' :'คุณยังไม่ได้เข้าสู่ระบบ'}</Typography>
+                </MenuItem>
+              )}
             </Menu>
           </Box>
         </Toolbar>
@@ -240,15 +252,22 @@ function App() {
       </Box>
       <Box component="main" sx={{ p: 3 }}>
         <Toolbar />
-        <BasicSwitch>
-          <Route exact path="/">
-            <Home setLoad={(val) => setLoad(val)} lang={langselect} />
-          </Route>
-          <Route exact path="/artists">
-            <Art setLoad={(val) => setLoad(val)} lang={langselect} />
-          </Route>
-        </BasicSwitch>
+        <div style={{marginBottom: footerHeight + 'px'}}>
+          <BasicSwitch>
+            <Route exact path="/">
+              <Home setLoad={(val) => setLoad(val)} lang={langselect} />
+            </Route>
+            <Route exact path="/artists">
+              <Art setLoad={(val) => setLoad(val)} lang={langselect} />
+            </Route>
+          </BasicSwitch>
+        </div>
       </Box>
+      <br />
+      <footer className='fixed-bottom text-center text-dark pb-1 pt-1 bg-light' ref={ref}>
+        &copy; Copyright 2023 CPXDevStudio<br />
+        All artist information and images are the property of the record label owner and the artist themselves. This website is intended to support artists on a non-profit basis.
+      </footer>
     </Box>
   );
 }

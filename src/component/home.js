@@ -26,8 +26,10 @@ const Home = ({setLoad, lang}) => {
       setLang(lang)
     }, [lang]);
     return ( 
+      <>
         <Typography dangerouslySetInnerHTML={{ __html: pagedetail[langselect].desc }}>
         </Typography>
+      </>
      );
 }
  

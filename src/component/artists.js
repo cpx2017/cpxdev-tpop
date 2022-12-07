@@ -1,7 +1,7 @@
 import React from 'react'
 import pagedetail from '../menulist/Artists.json'
 import Typography from '@mui/material/Typography';
-import { CardHeader, CardMedia, Card } from '@mui/material';
+import { CardHeader, CardMedia, Card, CardActionArea, CardContent } from '@mui/material';
 
 const a = [
   {
@@ -78,17 +78,21 @@ const Art = ({setLoad, lang}) => {
           <div className='container col-12'>
             <div className='row d-flex justify-content-center'>
               {a.map((item) => (
-                <Card className='col-md-3 mb-4 text-center pb-4'>
-                  <CardMedia className='pt-3 mb-2' src={item.artImg} component='img' />
-                  <Typography variant='h5'>
-                    {item.artName[langselect]}
-                  </Typography>
-                  <Typography variant='subtitle2'>
-                   {langselect == 'th' && 'ศิลปิน'}{capitalizeFirstLetter(item.artType[langselect])}{langselect == 'en' && ' Artist'}
-                  </Typography>
-                  <Typography variant='body1'>
-                    {item.artlabel != "" ? item.artlabel : "No Music Label (Independent Artist)"}
-                  </Typography>
+                <Card className='col-md-3 text-center'>
+                  <CardContent>
+                    <CardActionArea>
+                      <CardMedia className='mb-2' src={item.artImg} component='img' />
+                        <Typography variant='h5'>
+                          {item.artName[langselect]}
+                        </Typography>
+                        <Typography variant='subtitle2'>
+                        {langselect == 'th' && 'ศิลปิน'}{capitalizeFirstLetter(item.artType[langselect])}{langselect == 'en' && ' Artist'}
+                        </Typography>
+                        <Typography variant='body1'>
+                          {item.artlabel != "" ? item.artlabel : "No Music Label (Independent Artist)"}
+                        </Typography>
+                    </CardActionArea>
+                  </CardContent>
                 </Card>
               ))}
             </div>

@@ -160,7 +160,7 @@ function App() {
           <Box sx={{ flexGrow: 0, mr: 1 }} className='text-right'>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="U" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu

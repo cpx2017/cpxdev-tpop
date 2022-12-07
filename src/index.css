@@ -12,9 +12,9 @@ code {
 
 a{
   text-decoration: none;
-  color: navy;
+  color: rgb(46, 46, 46);
 }
 a:hover{
   text-decoration: none;
-  color: rgb(0, 71, 153);
+  color: rgb(73, 73, 73);
 }

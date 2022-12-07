@@ -35,7 +35,7 @@ const Art = ({setLoad}) => {
       localStorage.setItem('tpoplang', langselect)
     }, [langselect]);
     return ( 
-        <Typography dangerouslySetInnerHTML={{ __html: pagedetail[langselect].desc }}>
+        <Typography dangerouslySetInnerHTML={{ __html: 'for testing' }}>
         </Typography>
      );
 }

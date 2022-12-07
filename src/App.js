@@ -230,8 +230,7 @@ function App() {
       </Box>
       <Box component="main" sx={{ p: 3 }}>
         <Toolbar />
-        <Typography>
-          {pagedetail[langselect].desc}
+        <Typography dangerouslySetInnerHTML={pagedetail[langselect].desc}>
         </Typography>
       </Box>
     </Box>

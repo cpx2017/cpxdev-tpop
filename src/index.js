@@ -5,6 +5,9 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import {
+  BrowserRouter
+} from "react-router-dom";
 
 const theme = createTheme({
   typography: {
@@ -14,9 +17,11 @@ const theme = createTheme({
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <BrowserRouter>
   <ThemeProvider theme={theme}>
     <App/>
   </ThemeProvider>
+  </BrowserRouter>
 );
 
 serviceWorkerRegistration.register();

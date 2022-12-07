@@ -25,9 +25,19 @@ import MenuItem from '@mui/material/MenuItem';
 
 import {Backdrop} from '@mui/material';
 
-import pagedetail from './menulist/App.json'
+import {
+  BrowserRouter,
+  Route,
+  Link,
+  Switch as BasicSwitch,
+  useHistory,
+} from "react-router-dom";
+
+import Home from './component/home';
+import Art from './component/artists';
 
 const drawerWidth = 240;
+const navItemsLink = ['', 'artists', 'news', 'songlist', 'social', 'about', 'contact'];
 const navItemsEn = ['Home', 'Artists', 'News', 'Top Songs', 'Social', 'About', 'Contact us'];
 const navItemsTh = ['หน้าหลัก', 'ค้นหาศิลปิน', 'ข่าวสาร', 'อันดับเพลงสูงสุด', 'สังคมออนไลน์', 'เกี่ยวกับ', 'ติดต่อเรา'];
 const LangList = [{
@@ -141,8 +151,8 @@ function App() {
           </Typography>
           )}
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {(langselect == 'en' ?navItemsEn:navItemsTh).map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
+            {(langselect == 'en' ?navItemsEn:navItemsTh).map((item, i) => (
+              <Button component={Link} to={'/' + navItemsLink[i]} key={item} sx={{ color: '#fff' }}>
                 {item}
               </Button>
             ))}
@@ -217,8 +227,8 @@ function App() {
       </Typography>
       <Divider />
       <List>
-        {(langselect == 'en' ?navItemsEn:navItemsTh).map((item) => (
-          <ListItem key={item} disablePadding>
+        {(langselect == 'en' ?navItemsEn:navItemsTh).map((item, i) => (
+          <ListItem component={Link} to={'/' + navItemsLink[i]} key={item} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
               <ListItemText primary={item} />
             </ListItemButton>
@@ -230,8 +240,14 @@ function App() {
       </Box>
       <Box component="main" sx={{ p: 3 }}>
         <Toolbar />
-        <Typography dangerouslySetInnerHTML={{ __html: pagedetail[langselect].desc }}>
-        </Typography>
+        <BasicSwitch>
+          <Route exact path="/">
+            <Home setLoad={(val) => setLoad(val)} />
+          </Route>
+          <Route exact path="/artists">
+            <Art setLoad={(val) => setLoad(val)} />
+          </Route>
+        </BasicSwitch>
       </Box>
     </Box>
   );

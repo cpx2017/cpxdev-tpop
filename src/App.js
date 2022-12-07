@@ -242,10 +242,10 @@ function App() {
         <Toolbar />
         <BasicSwitch>
           <Route exact path="/">
-            <Home setLoad={(val) => setLoad(val)} />
+            <Home setLoad={(val) => setLoad(val)} lang={langselect} />
           </Route>
           <Route exact path="/artists">
-            <Art setLoad={(val) => setLoad(val)} />
+            <Art setLoad={(val) => setLoad(val)} lang={langselect} />
           </Route>
         </BasicSwitch>
       </Box>

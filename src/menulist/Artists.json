@@ -1,0 +1,16 @@
+{
+    "en":{
+        "title":"T-POP Artists",
+        "obj":{
+            "title": "Artist Name",
+            "type": "Artist Type"
+        }
+    },
+    "th":{
+        "title":"กลุ่มศิลปิน T-POP",
+        "obj":{
+            "title": "ชื่อศิลปิน",
+            "type": "ประเภทของศิลปิน"
+        }
+    }
+}

@@ -2,7 +2,7 @@ import React from 'react'
 import pagedetail from '../menulist/Home.json'
 import Typography from '@mui/material/Typography';
 
-const Home = ({setLoad}) => {
+const Home = ({setLoad, lang}) => {
     const [width, setRealwidth] = React.useState(window.innerWidth);
     const [langselect, setLang] = React.useState('en');
   
@@ -21,19 +21,10 @@ const Home = ({setLoad}) => {
         window.removeEventListener('resize', handleWindowResize);
       };
     }, []);
-  
-  
-    React.useEffect(() => {
-      if (localStorage.getItem('tpoplang') != null) {
-        setLang(localStorage.getItem('tpoplang'))
-      } else {
-        localStorage.setItem('tpoplang', langselect)
-      }
-    }, [])
     
     React.useEffect(() => {
-      localStorage.setItem('tpoplang', langselect)
-    }, [langselect]);
+      setLang(lang)
+    }, [lang]);
     return ( 
         <Typography dangerouslySetInnerHTML={{ __html: pagedetail[langselect].desc }}>
         </Typography>

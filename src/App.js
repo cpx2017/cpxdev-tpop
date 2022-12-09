@@ -63,8 +63,6 @@ function App() {
   const [login, setLogin] = React.useState('');
 
   const [loadsession, setLoad] = React.useState(true);
-
-  console.log(ref)
   
   React.useEffect(() => {
     function handleWindowResize() {

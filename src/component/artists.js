@@ -52,6 +52,7 @@ function capitalizeFirstLetter(string) {
 const Art = ({setLoad, lang}) => {
     const [width, setRealwidth] = React.useState(window.innerWidth);
     const [langselect, setLang] = React.useState('en');
+    const [rootArr, setRootArr] = React.useState([]);
   
     
     React.useEffect(() => {
@@ -63,7 +64,10 @@ const Art = ({setLoad, lang}) => {
       setLoad(true)
       fetch('https://api.cpxdev.tk/home/status')
         .then((response) => response.text())
-        .then((data) => setLoad(false));
+        .then((data) => {
+          setRootArr(a)
+          setLoad(false)
+        });
       return () => {
         window.removeEventListener('resize', handleWindowResize);
       };
@@ -77,7 +81,7 @@ const Art = ({setLoad, lang}) => {
           <CardHeader title={(<h3>{pagedetail[langselect].title}</h3>)} />
           <div className='container col-12'>
             <div className='row d-flex justify-content-center'>
-              {a.map((item) => (
+              {rootArr.map((item) => (
                 <Card className='col-md-3 mt-2 text-center'>
                   <CardContent>
                     <CardActionArea>

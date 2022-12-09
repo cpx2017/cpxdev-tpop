@@ -78,7 +78,7 @@ const Art = ({setLoad, lang}) => {
           <div className='container col-12'>
             <div className='row d-flex justify-content-center'>
               {a.map((item) => (
-                <Card className='col-md-3 text-center'>
+                <Card className='col-md-3 mt-2 text-center'>
                   <CardContent>
                     <CardActionArea>
                       <CardMedia className='mb-2' src={item.artImg} component='img' />
@@ -87,9 +87,6 @@ const Art = ({setLoad, lang}) => {
                         </Typography>
                         <Typography variant='subtitle2'>
                         {langselect == 'th' && 'ศิลปิน'}{capitalizeFirstLetter(item.artType[langselect])}{langselect == 'en' && ' Artist'}
-                        </Typography>
-                        <Typography variant='body1'>
-                          {item.artlabel != "" ? item.artlabel : "No Music Label (Independent Artist)"}
                         </Typography>
                     </CardActionArea>
                   </CardContent>

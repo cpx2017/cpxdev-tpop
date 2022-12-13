@@ -62,10 +62,14 @@ const Art = ({setLoad, lang}) => {
   
       window.addEventListener('resize', handleWindowResize);
       setLoad(true)
-      fetch('https://apiweb.cpxdev.tk/tpop/artistlist')
+      fetch('https://apiweb.cpxdev.tk/tpop/artistlist', {
+        method: 'post'
+      })
         .then((response) => response.json())
         .then((data) => {
-          setRootArr(data)
+          if (data.length > 0) {
+            setRootArr(data)
+          }
           setLoad(false)
         });
       return () => {

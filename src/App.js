@@ -35,6 +35,7 @@ import {
 
 import Home from './component/home';
 import Art from './component/artists';
+import ArtDetail from './component/artistDetail';
 
 const drawerWidth = 240;
 const navItemsLink = ['', 'artists', 'news', 'songlist', 'social', 'about', 'contact'];
@@ -256,6 +257,9 @@ function App() {
             </Route>
             <Route exact path="/artists">
               <Art setLoad={(val) => setLoad(val)} lang={langselect} />
+            </Route>
+            <Route exact path="/artist/:id">
+              <ArtDetail setLoad={(val) => setLoad(val)} lang={langselect} />
             </Route>
           </BasicSwitch>
         </div>

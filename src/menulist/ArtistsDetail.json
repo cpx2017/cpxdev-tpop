@@ -1,0 +1,18 @@
+{
+    "en":{
+        "title":"T-POP Artist Description (Testing purpose)",
+        "obj":{
+            "type": "Artist Type: ",
+            "label": "Artist or Music Label: ",
+            "follower": "Instagram Followers: "
+        }
+    },
+    "th":{
+        "title":"รายละเอียดของศิลปิน T-POP (อยู่ระหว่างทดสอบระบบ)",
+        "obj":{
+            "type": "ประเภทของศิลปิน: ",
+            "label": "บริษัทที่ดูแลศิลปิน: ",
+            "follower": "จำนวนผู้ติดตามบนอินสตาแกรม: "
+        }
+    }
+}

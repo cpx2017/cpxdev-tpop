@@ -95,7 +95,11 @@ const ArtDetail = ({setLoad, lang}) => {
                 setRootArr(json)
                 FetchFollower(json.forsearchFollower)
                 Fetchspot(json.spotID)
-                getArtUpdate(json.tweetID)
+                if (json.tweetID != "") {
+                  getArtUpdate(json.tweetID)
+                } else {
+                  setUpdate([])
+                }
               } else {
                 History.push("/artists")
               }

@@ -163,7 +163,7 @@ const ArtDetail = ({setLoad, lang}) => {
                                                             <Typography variant='h5'>
                                                                 {itemobj.name}
                                                             </Typography>
-                                                <Typography variant='subtitle1'>{langselect == 'th' ? 'จำหน่ายเมื่อ ' : 'Released in '}{moment.utc(itemobj.release_date).local().locale(langselect).format("DD MMMM YYYY")}</Typography>
+                                                <Typography variant='subtitle1'>{langselect == 'th' ? 'จำหน่ายเมื่อ ' : 'Released in '}{moment(itemobj.release_date, "YYYY-MM-DD").locale(langselect).format("DD MMMM YYYY")}</Typography>
                                                         </CardActionArea>
                                                         </CardContent>
                                                     </Card>

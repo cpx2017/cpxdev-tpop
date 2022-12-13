@@ -146,8 +146,7 @@ function App() {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href=""
+            component="div"
             sx={{
               color: 'inherit',
               textDecoration: 'none',

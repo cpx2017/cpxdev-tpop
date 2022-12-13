@@ -86,7 +86,7 @@ const Art = ({setLoad, lang}) => {
           <div className='container col-12'>
             <div className='row d-flex justify-content-center'>
               {rootArr.map((item) => (
-                <Card className='col-md-3 mt-2 text-center'>
+                <Card className={'col-md-'+ (rootArr.length >= 3 ? '3' : rootArr.length + 1) + ' mt-2 text-center'}>
                   <CardContent>
                     <CardActionArea>
                       <CardMedia className='mb-2' src={item.artImg} component='img' />

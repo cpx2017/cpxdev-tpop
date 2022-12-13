@@ -120,7 +120,7 @@ const ArtDetail = ({setLoad, lang}) => {
                                     <div className='col-md-3'>
                                         <img className='imgcircle' src={rootArr.artImg} width="100%" />
                                     </div>
-                                    <div className='col-md text-left'>
+                                    <div className='col-md text-left mt-3'>
                                         <Typography variant='body1'>
                                             {pagedetail[langselect].obj.type}{langselect == 'th' && 'ศิลปิน'}{capitalizeFirstLetter(rootArr.artType[langselect])}{langselect == 'en' && ' Artist'}
                                         </Typography>

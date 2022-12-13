@@ -83,23 +83,25 @@ const Art = ({setLoad, lang}) => {
     return ( 
         <>
           <CardHeader title={(<h3>{pagedetail[langselect].title}</h3>)} />
-          <div className='container col-12'>
-            <div className='row d-flex justify-content-center'>
-              {rootArr.map((item) => (
-                <Card className={'col-md-'+ (rootArr.length >= 3 ? '3' : 12 / (rootArr.length + 1)) + ' mt-2 text-center'}>
-                  <CardContent>
-                    <CardActionArea>
-                      <CardMedia className='mb-2' src={item.artImg} component='img' />
-                        <Typography variant='h5'>
-                          {item.artName[langselect]}
-                        </Typography>
-                        <Typography variant='subtitle2'>
-                        {langselect == 'th' && 'ศิลปิน'}{capitalizeFirstLetter(item.artType[langselect])}{langselect == 'en' && ' Artist'}
-                        </Typography>
-                    </CardActionArea>
-                  </CardContent>
-                </Card>
-              ))}
+          <div className='text-center'>
+            <div className='container col-12'>
+              <div className='row d-flex justify-content-center'>
+                {rootArr.map((item) => (
+                  <Card className={'col-md-3 mt-2 text-center'}>
+                    <CardContent>
+                      <CardActionArea>
+                        <CardMedia className='mb-2' src={item.artImg} component='img' />
+                          <Typography variant='h5'>
+                            {item.artName[langselect]}
+                          </Typography>
+                          <Typography variant='subtitle2'>
+                          {langselect == 'th' && 'ศิลปิน'}{capitalizeFirstLetter(item.artType[langselect])}{langselect == 'en' && ' Artist'}
+                          </Typography>
+                      </CardActionArea>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
           </div>
         </>

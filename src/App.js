@@ -117,7 +117,7 @@ function App() {
  
 
   return (
-    <Box sx={{display: 'flex'}}>
+    <Box>
     <Backdrop
       sx={{ backgroundColor: 'rgba(255,255,255,0.4)', zIndex: 1500, position: 'fixed' }}
       open={loadsession}

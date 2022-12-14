@@ -9,12 +9,12 @@
     },
     {
       "src": "https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/tpop/tpopfulllogo.ico",
-      "type": "image/png",
+      "type": "image/x-icon",
       "sizes": "192x192"
     },
     {
       "src": "https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/tpop/tpopfulllogo.ico",
-      "type": "image/png",
+      "type": "image/x-icon",
       "sizes": "512x512"
     }
   ],

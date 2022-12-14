@@ -144,7 +144,7 @@ const ArtDetail = ({setLoad, lang}) => {
                                         <Card className='mt-2 pt-2'>
                                             <CardContent>
                                                 <CardActionArea onClick={() => window.open("https://twitter.com/page/status/" + Update[Currentshow].id, "_blank")}>
-                                                  <CardHeader title={(langselect == 'th' ? 'อัปเดตจากศิลปิน' : 'Update from artist')} />
+                                                  <CardHeader title={(langselect == 'th' ? 'อัปเดตจาก ' : 'Update from  ') + rootArr.artName[langselect]} />
                                                 <Typography variant='h6' dangerouslySetInnerHTML={{ __html: '<blockquote><i>' + Update[Currentshow].text  + '</i></blockquote>' }}></Typography>
                                                 <Typography variant='subtitle1'>{langselect == 'th' ? 'อัปเดตเมื่อ ' : 'Update in '}{moment.utc(Update[Currentshow].created_at).local().locale(langselect).format("DD MMMM YYYY HH:mm")}</Typography>
                                                 </CardActionArea>

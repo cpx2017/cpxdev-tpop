@@ -57,10 +57,10 @@ const ArtDetail = ({setLoad, lang}) => {
           .then((data) => {
             if (data.error == undefined) {
                 setUpdate(data.data)
-                const ran = Math.floor(Math.random() * data.data.length - 1);
+                const ran = Math.floor(Math.random() * data.data.length);
                 setCurrentshow(ran)
                 setInterval(function () {
-                    const ran = Math.floor(Math.random() * data.data.length - 1);
+                    const ran = Math.floor(Math.random() * data.data.length);
                     setCurrentshow(ran)
                 }, 10000);
               } else {

@@ -3,17 +3,17 @@
   "name": "T-POP Megaverse",
   "icons": [
     {
-      "src": "https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/tpop/tpoplogo.ico",
+      "src": "https://raw.githubusercontent.com/cpx2017/cpxcdnbucket/main/tpop/tpop.logo.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/tpop/tpopfulllogo.png",
+      "src": "https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/tpop/tpop.fulllogo.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/tpop/tpopfulllogo.png",
+      "src": "https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/tpop/tpop.fulllogo.png",
       "type": "image/png",
       "sizes": "512x512"
     }

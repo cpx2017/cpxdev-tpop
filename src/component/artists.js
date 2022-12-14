@@ -32,7 +32,7 @@ const Art = ({setLoad, lang}) => {
         .then((response) => response.json())
         .then((data) => {
           if (data.length > 0) {
-            setRootArr(data.sort((a, b) => (a.artName[langselect] > b.artName[langselect]) ? 1 : ((a.artName[langselect] < b.artName[langselect]) ? -1 : 0)))
+            setRootArr(data.sort((a, b) => (a.artName[lang] > b.artName[lang]) ? 1 : ((a.artName[lang] < b.artName[lang]) ? -1 : 0)))
           }
           setLoad(false)
         });

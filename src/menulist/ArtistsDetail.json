@@ -4,7 +4,9 @@
         "obj":{
             "type": "Artist Type: ",
             "label": "Artist or Music Label: ",
-            "follower": "Instagram Followers: "
+            "follower": "Instagram Followers: ",
+            "follow" : "Follow ",
+            "follow2": " below"
         }
     },
     "th":{
@@ -12,7 +14,8 @@
         "obj":{
             "type": "ประเภทของศิลปิน: ",
             "label": "บริษัทที่ดูแลศิลปิน: ",
-            "follower": "จำนวนผู้ติดตามบนอินสตาแกรม: "
+            "follower": "จำนวนผู้ติดตามบนอินสตาแกรม: ",
+            "follow" : "ช่องทางการติดตามของ "
         }
     }
 }

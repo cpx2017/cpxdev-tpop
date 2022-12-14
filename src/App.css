@@ -44,3 +44,7 @@
 .imgcircle{
   border-radius: 20%;
 }
+
+.point{
+  cursor: pointer;
+}

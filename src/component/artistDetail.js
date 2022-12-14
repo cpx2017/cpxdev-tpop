@@ -5,6 +5,11 @@ import { CardHeader, CardMedia, Card, CardActionArea, CardContent, ListItem, Ske
 import moment from 'moment'
 import 'moment/locale/th'  // without this line it didn't work
 
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import LanguageIcon from '@mui/icons-material/Language';
+
 import {
     useParams,
     useHistory
@@ -134,9 +139,27 @@ const ArtDetail = ({setLoad, lang}) => {
                                         <Typography variant='h6'>
                                             {pagedetail[langselect].obj.label}{rootArr.artlabel}
                                         </Typography>
-                                        <p className='indent mt-5'>
+                                        <p className='indent mt-5 mb-5'>
                                             {rootArr.artDesc[langselect]}
                                         </p>
+                                        <div className='border border-info pb-3 mt-2 rounded'>
+                                          <div className='row justify-content-center mt-2'>
+                                            {pagedetail[langselect].obj.follow}{rootArr.artName[langselect]}{langselect == 'en' && pagedetail[langselect].obj.follow2}
+                                          </div>
+                                          <div className='row justify-content-center mt-2'>
+                                            {
+                                              rootArr.following.map((itemfollow, ii) => itemfollow.en == 'facebook' ? (
+                                                <FacebookIcon onClick={() => window.open(itemfollow.link, '_blank')} className='point' data-toggle="tooltip" data-placement="bottom" title={itemfollow[langselect]} />
+                                              ) : itemfollow.en == 'instagram' ? (
+                                                <InstagramIcon onClick={() => window.open(itemfollow.link, '_blank')} className='point' data-toggle="tooltip" data-placement="bottom" title={itemfollow[langselect]} />
+                                              ) : itemfollow.en == 'twitter' ? (
+                                                <TwitterIcon onClick={() => window.open(itemfollow.link, '_blank')} className='point' data-toggle="tooltip" data-placement="bottom" title={itemfollow[langselect]} />
+                                              ) : itemfollow.en == 'website' ? (
+                                                <LanguageIcon onClick={() => window.open(itemfollow.link, '_blank')} className='point' data-toggle="tooltip" data-placement="bottom" title={itemfollow[langselect]} />
+                                              ) : null
+                                            )}
+                                          </div>
+                                        </div>
                                     </div>
                                 </div>
                                 {

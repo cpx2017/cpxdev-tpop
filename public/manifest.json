@@ -8,13 +8,13 @@
       "type": "image/x-icon"
     },
     {
-      "src": "https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/tpop/tpopfulllogo.ico",
-      "type": "image/x-icon",
+      "src": "https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/tpop/tpopfulllogo.png",
+      "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/tpop/tpopfulllogo.ico",
-      "type": "image/x-icon",
+      "src": "https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/tpop/tpopfulllogo.png",
+      "type": "image/png",
       "sizes": "512x512"
     }
   ],

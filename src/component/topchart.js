@@ -100,7 +100,7 @@ const Top = ({setLoad, lang}) => {
                  <ListItem disablePadding key={item.track.id} className={"mt-2" + (width > 700 ? " pl-5  pr-5" : "")}>
                     <ListItemButton onClick={() => window.open(item.track.external_urls.spotify, "_blank")}>
                       <ListItemAvatar>
-                        <Avatar alt={item.track.name} src={item.track.album.images[0].url} sx={{ width: 100, height: 100 }} />
+                        <Avatar alt={item.track.name} src={item.track.album.images[0].url} sx={width > 800 ? { width: 100, height: 100 } : null} />
                       </ListItemAvatar>
                       <ListItemText className='ml-3' primary={
                         (<Typography variant='h6'>{item.track.name}</Typography>)} secondary={item.track.artists[0].name} 

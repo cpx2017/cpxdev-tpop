@@ -36,11 +36,12 @@ import {
 import Home from './component/home';
 import Art from './component/artists';
 import ArtDetail from './component/artistDetail';
+import News from './component/news';
 
 const drawerWidth = 240;
-const navItemsLink = ['', 'artists', 'news', 'songlist', 'social', 'about', 'contact'];
-const navItemsEn = ['Home', 'Artists', 'News', 'Top Songs', 'Social', 'About', 'Contact us'];
-const navItemsTh = ['หน้าหลัก', 'ค้นหาศิลปิน', 'ข่าวสาร', 'อันดับเพลงสูงสุด', 'สังคมออนไลน์', 'เกี่ยวกับ', 'ติดต่อเรา'];
+const navItemsLink = ['', 'artists', 'news', 'songlist', 'about', 'contact'];
+const navItemsEn = ['Home', 'Artists', 'News', 'Top Songs', 'About', 'Contact us'];
+const navItemsTh = ['หน้าหลัก', 'ค้นหาศิลปิน', 'ข่าวสาร', 'อันดับเพลงสูงสุด', 'เกี่ยวกับ', 'ติดต่อเรา'];
 const LangList = [{
   id:'en',
   label: 'English'
@@ -57,7 +58,7 @@ function App() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [width, setRealwidth] = React.useState(window.innerWidth);
-  const [langselect, setLang] = React.useState('en');
+  const [langselect, setLang] = React.useState(localStorage.getItem('tpoplang') != null ? localStorage.getItem('tpoplang') : 'en');
   const ref = React.useRef(null)
   const [footerHeight, setFooterH] = React.useState(0)
 
@@ -260,6 +261,9 @@ function App() {
             </Route>
             <Route exact path="/artist/:id">
               <ArtDetail setLoad={(val) => setLoad(val)} lang={langselect} />
+            </Route>
+            <Route exact path="/news">
+              <News setLoad={(val) => setLoad(val)} lang={langselect} />
             </Route>
           </BasicSwitch>
         </div>

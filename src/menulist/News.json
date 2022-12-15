@@ -1,0 +1,24 @@
+{
+    "en":{
+        "title":"T-POP News",
+        "notify":{
+            "head":"Language Changed",
+            "sub": "News update will be change from language which you choose. click here to update"
+        },
+        "obj":{
+            "by": "By ",
+            "provide": " in "
+        }
+    },
+    "th":{
+        "title":"ข่าวสารเกี่ยวกับ T-POP",
+        "notify":{
+            "head":"คุณได้มีการเปลี่ยนภาษา",
+            "sub": "แพลตฟอร์มของเรารองรับการแสดงเนื้อหาข่าวเป็นภาษาไทยแล้ว คลิกที่นี่เพื่ออัปเดต"
+        },
+        "obj":{
+            "by": "โดย ",
+            "provide": " เมื่อวันที่ "
+        }
+    }
+}

@@ -88,7 +88,7 @@ const Top = ({setLoad, lang}) => {
               <div className='row d-flex justify-content-center'>
               {rootArr.map((item, i) => i < 3 && (
                   <Card key={item.track.id} className={'col-md-4 mt-2 text-center'}>
-                    <CardContent className='rounded mt-3 mb-3' sx={i == 0 ? {background: gold1} : i == 1 ? {background: silver} : i == 2 ? {background: bronze} : null}>
+                    <CardContent className='rounded' sx={i == 0 ? {background: gold1} : i == 1 ? {background: silver} : i == 2 ? {background: bronze} : null}>
                       <CardActionArea onClick={() => window.open(item.track.external_urls.spotify, "_blank")}>
                         <CardMedia className='mb-2 imgcircle' src={item.track.album.images[0].url} component='img' />
                           <CardHeader title={"#" +(i +1) + " " + item.track.name} />

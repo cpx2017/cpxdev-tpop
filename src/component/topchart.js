@@ -7,21 +7,16 @@ import {
   useHistory
 } from "react-router-dom";
 import moment from 'moment'
-import { Fireworks } from 'fireworks-js/dist/react'
 
-
-  const fwstyle = {
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    position: 'absolute',
-    background: 'transperent'
-  }
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+const gold1 = '-webkit-linear-gradient(top, #8f6B29, #FDE08D, #DF9F28)'
+// const gold2 = 'linear-gradient(top, #8f6B29, #FDE08D, #DF9F28)'
+const silver = 'linear-gradient(-72deg,#dedede,#ffffff 16%,#dedede 21%,#ffffff 24%,#454545 27%,#dedede 36%,#ffffff 45%,#ffffff 60%,#dedede 72%,#ffffff 80%,#dedede 84%,#a1a1a1);'
+const bronze = 'linear-gradient(-72deg,#ca7345,#ffdeca 16%,#ca7345 21%,#ffdeca 24%,#a14521 27%,#ca7345 36%,#ffdeca 45%,#ffdeca 60%,#ca7345 72%,#ffdeca 80%,#ca7345 84%,#732100);'
 
 const Top = ({setLoad, lang}) => {
     const [width, setRealwidth] = React.useState(window.innerWidth);
@@ -93,11 +88,8 @@ const Top = ({setLoad, lang}) => {
               <div className='row d-flex justify-content-center'>
               {rootArr.map((item, i) => i < 3 && (
                   <Card key={item.track.id} className={'col-md-4 mt-2 text-center'}>
-                    <CardContent>
+                    <CardContent className='rounded mt-3 mb-3' sx={i == 0 ? {background: gold1} : i == 1 ? {background: silver} : i == 2 ? {background: bronze} : null}>
                       <CardActionArea onClick={() => window.open(item.track.external_urls.spotify, "_blank")}>
-                        {i == 0 && (
-                          <Fireworks options={fwoptions} style={fwstyle} />
-                        )}
                         <CardMedia className='mb-2 imgcircle' src={item.track.album.images[0].url} component='img' />
                           <CardHeader title={"#" +(i +1) + " " + item.track.name} />
                       </CardActionArea>

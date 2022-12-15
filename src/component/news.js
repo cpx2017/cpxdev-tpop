@@ -69,7 +69,7 @@ const News = ({setLoad, lang}) => {
           .then((response) => response.json())
           .then((data) => {
             if (data.length > 0) {
-              setRootArr(data.sort((a, b) => (new Date(a.pubDate) > new Date(b.pubDate)) ? 1 : ((new Date(a.pubDate) < new Date(b.pubDate)) ? -1 : 0)))
+              setRootArr(data.sort((a, b) => (new Date(b.pubDate) - new Date(a.pubDate))))
             }
             setLoad(false)
           });

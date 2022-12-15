@@ -97,7 +97,7 @@ const Top = ({setLoad, lang}) => {
                   </Card>
                 ))}
               {rootArr.map((item ,i) => i > 2 && (
-                 <ListItem disablePadding key={item.track.id} className={"mt-2 " + (width > 700 ? "pl-5  pr-5" : "")}>
+                 <ListItem disablePadding key={item.track.id} className={"mt-2" + (width > 700 ? " pl-5  pr-5" : "")}>
                     <ListItemButton onClick={() => window.open(item.track.external_urls.spotify, "_blank")}>
                       <ListItemAvatar>
                         <Avatar alt={item.track.name} src={item.track.album.images[0].url} sx={{ width: 100, height: 100 }} />

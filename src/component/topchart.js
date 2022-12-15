@@ -9,10 +9,6 @@ import {
 import moment from 'moment'
 import { Fireworks } from 'fireworks-js/dist/react'
 
-const fwoptions = {
-    speed: 2,
-    delay: { min: 10, max: 1500 },
-  }
 
   const fwstyle = {
     top: 0,
@@ -29,9 +25,13 @@ function capitalizeFirstLetter(string) {
 
 const Top = ({setLoad, lang}) => {
     const [width, setRealwidth] = React.useState(window.innerWidth);
-    const [langselect, setLang] = React.useState('en');
+    const [fwoptions, setfwoptions] = React.useState({
+      speed: 2,
+      delay: { min: 10, max: 1500 },
+    });
     const [systemupdate, setUpdate] = React.useState('Loading');
     const [rootArr, setRootArr] = React.useState([]);
+    const [langselect, setLang] = React.useState('en');
     const History = useHistory();
   
     const removefonttag = (data) => {
@@ -55,6 +55,13 @@ const Top = ({setLoad, lang}) => {
     React.useEffect(() => {
       function handleWindowResize() {
         setRealwidth(window.innerWidth);
+      }
+
+      if (width < 800) {
+        setfwoptions({
+          speed: 1,
+          delay: { min: 10, max: 4000 },
+        })
       }
   
       window.addEventListener('resize', handleWindowResize);

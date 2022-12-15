@@ -37,6 +37,7 @@ import Home from './component/home';
 import Art from './component/artists';
 import ArtDetail from './component/artistDetail';
 import News from './component/news';
+import TopChart from './component/topchart';
 
 const drawerWidth = 240;
 const navItemsLink = ['', 'artists', 'news', 'songlist', 'about', 'contact'];
@@ -165,11 +166,9 @@ function App() {
             ))}
           </Box>
           <Box sx={{ flexGrow: 0, mr: 1 }} className='text-right'>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu}>
-                <Avatar alt="U" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
+            <IconButton onClick={handleOpenUserMenu}>
+              <Avatar alt="U" src="/static/images/avatar/2.jpg" />
+            </IconButton>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -264,6 +263,9 @@ function App() {
             </Route>
             <Route exact path="/news">
               <News setLoad={(val) => setLoad(val)} lang={langselect} />
+            </Route>
+            <Route exact path="/songlist">
+              <TopChart setLoad={(val) => setLoad(val)} lang={langselect} />
             </Route>
           </BasicSwitch>
         </div>

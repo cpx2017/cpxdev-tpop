@@ -56,8 +56,7 @@ const LangList = [{
 }];
 const settingsEn = ['Account', 'Logout'];
 const settingsTh = ['ตั้งค่าบัญชี', 'ออกจากระบบ'];
-// const eventTime = 1673337600
-const eventTime = 1671181713
+const eventTime = 1673337600
 
 
 function App() {

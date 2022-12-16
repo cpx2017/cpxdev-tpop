@@ -56,7 +56,8 @@ const LangList = [{
 }];
 const settingsEn = ['Account', 'Logout'];
 const settingsTh = ['ตั้งค่าบัญชี', 'ออกจากระบบ'];
-const eventTime = 1673337600
+// const eventTime = 1673337600
+const eventTime = 1671181713
 
 
 function App() {
@@ -164,6 +165,8 @@ function App() {
   };
 
   if (!grandopen) {
+    var metaThemeColor = document.querySelector("meta[name=theme-color]");
+    metaThemeColor.setAttribute("content", '#fff');
     return (
       <>
        <Backdrop
@@ -187,7 +190,8 @@ function App() {
     )
   }
  
-
+  var metaThemeColor = document.querySelector("meta[name=theme-color]");
+  metaThemeColor.setAttribute("content", 'rgb(25, 118, 210)');
   return (
     <Box>
     <Backdrop

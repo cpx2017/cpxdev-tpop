@@ -18,7 +18,7 @@ const gold1 = '-webkit-linear-gradient(top, #8f6B29, #FDE08D, #DF9F28)'
 const silver = 'linear-gradient(-72deg,#dedede,#ffffff 16%,#dedede 21%,#ffffff 24%,#454545 27%,#dedede 36%,#ffffff 45%,#ffffff 60%,#dedede 72%,#ffffff 80%,#dedede 84%,#a1a1a1);'
 const bronze = 'linear-gradient(-72deg,#ca7345,#ffdeca 16%,#ca7345 21%,#ffdeca 24%,#a14521 27%,#ca7345 36%,#ffdeca 45%,#ffdeca 60%,#ca7345 72%,#ffdeca 80%,#ca7345 84%,#732100);'
 
-const Top = ({setLoad, lang}) => {
+const Top = ({setLoad, lang, setPage}) => {
     const [width, setRealwidth] = React.useState(window.innerWidth);
     const [fwoptions, setfwoptions] = React.useState({
       speed: 2,
@@ -59,6 +59,11 @@ const Top = ({setLoad, lang}) => {
         })
       }
   
+      if (lang == 'th') {
+        setPage('อันดับเพลง')
+      } else {
+        setPage('Top Chart')
+      }
       window.addEventListener('resize', handleWindowResize);
       setLoad(true)
       fetch('https://apiweb.cpxdev.tk/tpop/tophits', {

@@ -13,7 +13,7 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-const News = ({setLoad, lang}) => {
+const News = ({setLoad, lang, setPage}) => {
     const [width, setRealwidth] = React.useState(window.innerWidth);
     const [langselect, setLang] = React.useState('en');
     const [rootArr, setRootArr] = React.useState([]);
@@ -43,6 +43,11 @@ const News = ({setLoad, lang}) => {
         setRealwidth(window.innerWidth);
       }
   
+      if (lang == 'th') {
+        setPage('ข่าวสาร T-POP')
+      } else {
+        setPage('T-POP News')
+      }
       window.addEventListener('resize', handleWindowResize);
       setLoad(true)
       fetch('https://apiweb.cpxdev.tk/tpop/news/'+ lang, {

@@ -1,8 +1,44 @@
 {
     "en":{
-        "desc":"From the success of <a href=\"https://bnk48fan.cpxdev.tk\" target=\"_blank\">BNK48 Fan Space</a> and <a href=\"https://cgm48fan.cpxdev.tk\" target=\"_blank\">CGM48 Fan Space</a> Platform. It's ready to growth with T-POP artists by Next Generation of Fan Space Platform. Let's join together soon"
+        "desc":"Welcome to T-POP Megaverse Platform. This platform is for all everyone who like T-POP (Thailand Pop) artist and support them. View their profile, View artist update and T-POP news or View and listening daily top chart songs. Altrough as well as exchanging information or discussing various issues (Upcoming feature).",
+        "list": [
+            {
+                "artistName": "Three Man Down",
+                "img": "https://i.scdn.co/image/ab67618600001016f93795d43d239f370b81006f",
+                "id": "9e0c7a07-a7f4-4c88-bfaa-129e8c805236"
+            },
+            {
+                "artistName": "Oat Pramote",
+                "img": "https://i.scdn.co/image/ab676186000010164a2132e1b009a94fbb8675e4",
+                "id": "eda4f1bc-cf9a-4b2c-9d90-4bd49209200f"
+            },
+            {
+                "artistName": "BNK48",
+                "img": "https://i.scdn.co/image/ab67618600001016a06ca5b41852ea51a73d207f",
+                "id": "8c05ea89-d8ac-4b14-b67d-e75f4862ff1b"
+            }
+        ],
+        "listforclick": "Click here to view artist info"
     },
     "th":{
-        "desc":"จากความสำเร็จของแพลตฟอร์ม <a href=\"https://bnk48fan.cpxdev.tk\" target=\"_blank\">BNK48 Fan Space</a> และ <a href=\"https://cgm48fan.cpxdev.tk\" target=\"_blank\">CGM48 Fan Space</a> สู่อีกหนึ่งก้าวของแพลตฟอร์ม Fan Space กับการปลุกกระแสวงการ T-POP สู่ระดับโลก เร็วๆนี้"
+        "desc":"ยินดีต้อนรับเข้าสู่แพลตฟอร์ม T-POP Megaverse แพลตฟอร์มสำหรับทุกคนที่ชื่นชอบศิลปิน T-POP (Thailand Pop) และพร้อมที่จะร่วมสนับสนุนศิลปินเหล่านี้ไปสู่ระดับโลก คุณสามารถที่จะดูโปรไฟล์ ติดตามข่าวสารวงการ T-POP หรือเฉพาะตัวศิลปิน และสามารถรับฟังเพลงอันดับสูงสุดประจำวัน ตลอดจนการพูดคุยและและเปลี่ยนข้อมูลของศิลปินบนแพลตฟอร์มของเรา (จะพร้อมให้บริการในอนาคต)",
+        "list": [
+            {
+                "artistName": "ทรีแมนดาวน์",
+                "img": "https://i.scdn.co/image/ab67618600001016f93795d43d239f370b81006f",
+                "id": "9e0c7a07-a7f4-4c88-bfaa-129e8c805236"
+            },
+            {
+                "artistName": "โอ๊ต ปราโมทย์",
+                "img": "https://i.scdn.co/image/ab676186000010164a2132e1b009a94fbb8675e4",
+                "id": "eda4f1bc-cf9a-4b2c-9d90-4bd49209200f"
+            },
+            {
+                "artistName": "บีเอ็นเคโฟตี้เอต",
+                "img": "https://i.scdn.co/image/ab67618600001016a06ca5b41852ea51a73d207f",
+                "id": "8c05ea89-d8ac-4b14-b67d-e75f4862ff1b"
+            }
+        ],
+        "listforclick": "คลิกที่นี่เพื่อดูโปรไฟล์ศิลปิน"
     }
 }

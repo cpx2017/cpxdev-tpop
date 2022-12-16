@@ -1,0 +1,54 @@
+{
+    "en":{
+        "title": "About us",
+        "desc":"From the success of <a href=\"https://s.cpxdev.tk/bnk48\" target=\"_blank\">BNK48 Fan Space</a> and <a href=\"https://s.cpxdev.tk/cgm48\" target=\"_blank\">CGM48 Fan Space</a> platform. The evolution of platform is coming. Not stopping at BNK48 and CGM48. But for any new generation of artist called T-POP or Thailand Pop. This platform is for everyone without any cost and let's support them. Connect all T-POP fans to around the world.",
+        "list": [
+            {
+                "title": "Benefit when you use this Platform",
+                "desc": ""
+            },
+            {
+                "title": "All favorite artists in one place",
+                "desc": "We have the most T-POP artists in platform. You can find favorite artist althrough fresh update from artist at once"
+            },
+            {
+                "title": "Cheer up song of favorite artist to daily Top Chart!",
+                "desc": "You can see and listening T-POP song and also listening song of your favorite artist who you want in Spotify."
+            },
+            {
+                "title": "Know all about every T-POP news in one platform",
+                "desc": "Click News menu and view T-POP fresh news from popular news agency in Thai or English."
+            },
+            {
+                "title": "T-POP Mega Community is soon",
+                "desc": "Community for all T-POP fan to sharing artist fan event or discussion about T-POP."
+            }
+        ]
+    },
+    "th":{
+        "title": "เกี่ยวกับเรา",
+        "desc":"จากความสำเร็จของแพลตฟอร์ม <a href=\"https://s.cpxdev.tk/bnk48\" target=\"_blank\">BNK48 Fan Space</a> และ <a href=\"https://s.cpxdev.tk/cgm48\" target=\"_blank\">CGM48 Fan Space</a> สู่อีกขั้นของแพลตฟอร์ม Fan Space กับการผลักดันศิลปิน T-POP หรือ Thailand Pop สู่ตลาดโลก แพลตฟอร์มนี้ถูกออกแบบมาเพื่อผู้ใช้งานทุกคน โดยไม่เสียค่าใช้จ่าย และการติดตามข่าวสารและอัปเดตข้อมูลกิจกรรมต่างๆจากศิลปิน และฟีเจอร์อื่นๆที่กำลังจะเกิดขึ้นในอนาคต เชื่อมแฟนคลับ T-POP จากทั่วโลกในแพลตฟอร์มเดียว",
+        "list": [
+            {
+                "title": "สิ่งที่คุณจะได้รับเมื่อเข้าใช้แพลตฟอร์มนี้",
+                "desc": ""
+            },
+            {
+                "title": "รวมข้อมูลศิลปินที่คุณชื่นชอบในที่เดียว",
+                "desc": "เราได้รวบรวมข้อมูลศิลปินไว้มากที่สุด คุณสามารถค้นหาตลอดจนการอัปเดตข่าวสารจากศิลปินที่คุณชื่นชอบได้"
+            },
+            {
+                "title": "ร่วมผลักดันเพลงของศิลปินที่คุณชื่นชอบขึ้นเป็นหนึ่งในอันดับเพลงสูงสุดประจำวันกัน!",
+                "desc": "คุณสามารถรับฟังและดูเพลงที่มีผู้ฟังมากที่สุดในแต่ละวัน หรือสามารถเลือกฟังเพลงบน Spotify เพื่อผลักดันเพลงของศิลปินที่คุณชื่นชอบขึ้นอันดับเพลงใน Platform เราได้เช่นกัน"
+            },
+            {
+                "title": "คุณเองก็รู้ข่าวสารครบทุกเรื่องวงการ T-POP",
+                "desc": "ข่าวสาร T-POP อยู่ใกล้แค่เพียงคลิกเดียว สามารถดูได้จากเมนู \"ข่าวสาร\" และเลือกดูตามภาษาไทยหรือภาษาอังกฤษที่คุณสะดวก"
+            },
+            {
+                "title": "T-POP Mega Community กำลังจะให้บริการเร็วๆนี้",
+                "desc": "ศูนย์รวม Community สำหรับแฟนๆ T-POP เพื่อร่วมแชร์ข่าวสารและกิจกรรมของด้อมศิลปินต่างๆ รวามทั้งพูดคุยเกี่ยวกับประเด็นต่างๆ อย่างชาญฉลาด"
+            }
+        ]
+    }
+}

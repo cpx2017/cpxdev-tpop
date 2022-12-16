@@ -48,3 +48,16 @@
 .point{
   cursor: pointer;
 }
+
+.cro-container {
+  position: relative;
+}
+.cro-text {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+}
+.padcro{
+  padding-left: 8%;
+  padding-right: 8%;
+}

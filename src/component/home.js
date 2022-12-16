@@ -1,10 +1,19 @@
 import React from 'react'
 import pagedetail from '../menulist/Home.json'
 import Typography from '@mui/material/Typography';
+import { CardHeader, CardMedia, Card, CardActionArea, CardContent, ListItem, Grow } from '@mui/material';
 
-const Home = ({setLoad, lang}) => {
+import {
+  useParams,
+  useHistory
+} from "react-router-dom";
+
+import Carousel from 'react-material-ui-carousel'
+
+const Home = ({setLoad, lang, setPage}) => {
     const [width, setRealwidth] = React.useState(window.innerWidth);
     const [langselect, setLang] = React.useState('en');
+    const History = useHistory();
   
     
     React.useEffect(() => {
@@ -12,11 +21,21 @@ const Home = ({setLoad, lang}) => {
         setRealwidth(window.innerWidth);
       }
   
+      if (lang == 'th') {
+        setPage('หน้าหลัก')
+      } else {
+        setPage('Homepage')
+      }
       window.addEventListener('resize', handleWindowResize);
       setLoad(true)
-      fetch('https://api.cpxdev.tk/home/status')
+      fetch('https://apiweb.cpxdev.tk/home/status')
         .then((response) => response.text())
-        .then((data) => setLoad(false));
+        .then((data) => {
+          console.log('backend ready')
+          setLoad(false)
+        }).catch(() => {
+          console.log('fail')
+        });
       return () => {
         window.removeEventListener('resize', handleWindowResize);
       };
@@ -27,7 +46,32 @@ const Home = ({setLoad, lang}) => {
     }, [lang]);
     return ( 
       <>
-        <Typography dangerouslySetInnerHTML={{ __html: pagedetail[langselect].desc }}>
+      <Carousel interval={8000}>
+        {pagedetail[langselect].list.map((item, i) => (
+          <Card key={"home-" + item.id} className={width > 1400 ? "padcro" : ''}>
+            {
+              width > 900 ? (
+                <CardActionArea className='cro-container' onClick={() => History.push('/artist/' + item.id)}>
+                  <CardMedia src={item.img} component="img" />
+                  <Grow in={true} timeout={1000}>
+                    <Card className='cro-text'>
+                        <CardHeader title={(<h3>{item.artistName}</h3>)} subheader={pagedetail[langselect].listforclick} />
+                    </Card>
+                  </Grow>
+                </CardActionArea>
+              ) : (
+                <CardActionArea onClick={() => History.push('/artist/' + item.id)}>
+                  <CardMedia src={item.img} component="img" />
+                  <Grow in={true} timeout={1000}>
+                    <CardHeader title={item.artistName} subheader={pagedetail[langselect].listforclick} />
+                  </Grow>
+                </CardActionArea>
+              )
+            }
+          </Card>
+          ))}
+      </Carousel>
+        <Typography className='indent mt-4' dangerouslySetInnerHTML={{ __html: pagedetail[langselect].desc }}>
         </Typography>
       </>
      );

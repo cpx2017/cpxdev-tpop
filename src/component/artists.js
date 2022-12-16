@@ -12,7 +12,7 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-const Art = ({setLoad, lang}) => {
+const Art = ({setLoad, lang, setPage}) => {
     const [width, setRealwidth] = React.useState(window.innerWidth);
     const [langselect, setLang] = React.useState('en');
     const [rootArr, setRootArr] = React.useState([]);
@@ -24,6 +24,11 @@ const Art = ({setLoad, lang}) => {
         setRealwidth(window.innerWidth);
       }
   
+      if (lang == 'th') {
+        setPage('รายชื่อสิลปิน')
+      } else {
+        setPage('Artists')
+      }
       window.addEventListener('resize', handleWindowResize);
       setLoad(true)
       fetch('https://apiweb.cpxdev.tk/tpop/artistlist', {

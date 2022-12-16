@@ -22,7 +22,7 @@ function numberWithCommas(x) {
     return Number(x).toLocaleString('en');
 }
 
-const ArtDetail = ({setLoad, lang}) => {
+const ArtDetail = ({setLoad, lang, setPage}) => {
     const [width, setRealwidth] = React.useState(window.innerWidth);
     const [langselect, setLang] = React.useState('en');
     const [rootArr, setRootArr] = React.useState(null);
@@ -88,6 +88,15 @@ const ArtDetail = ({setLoad, lang}) => {
         setRealwidth(window.innerWidth);
       }
   
+      if (rootArr != null) {
+        setPage(rootArr.artName[langselect])
+      } else {
+        if (lang == 'th') {
+          setPage('ข้อมูลศิลปิน')
+        } else {
+          setPage('Artist Detail')
+        }
+      }
       window.addEventListener('resize', handleWindowResize);
       setLoad(true)
       fetch('https://apiweb.cpxdev.tk/tpop/artistdetail/' + id, {
@@ -97,6 +106,7 @@ const ArtDetail = ({setLoad, lang}) => {
           .then((data) => {
             if (!data.includes('response') && !data.includes('error')) {
                 const json = JSON.parse(data)
+                setPage(json.artName[langselect])
                 setRootArr(json)
                 FetchFollower(json.forsearchFollower)
                 Fetchspot(json.spotID)

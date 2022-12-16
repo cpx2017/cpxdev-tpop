@@ -23,7 +23,9 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-import {Backdrop, Paper} from '@mui/material';
+import {Backdrop, Snackbar, Alert, AlertTitle} from '@mui/material';
+
+import moment from 'moment'
 
 import {
   BrowserRouter,
@@ -38,6 +40,8 @@ import Art from './component/artists';
 import ArtDetail from './component/artistDetail';
 import News from './component/news';
 import TopChart from './component/topchart';
+import About from './component/about';
+import Contact from './component/contact';
 
 const drawerWidth = 240;
 const navItemsLink = ['', 'artists', 'news', 'songlist', 'about', 'contact'];
@@ -52,6 +56,7 @@ const LangList = [{
 }];
 const settingsEn = ['Account', 'Logout'];
 const settingsTh = ['ตั้งค่าบัญชี', 'ออกจากระบบ'];
+const eventTime = 1673337600
 
 
 function App() {
@@ -62,10 +67,38 @@ function App() {
   const [langselect, setLang] = React.useState(localStorage.getItem('tpoplang') != null ? localStorage.getItem('tpoplang') : 'en');
   const ref = React.useRef(null)
   const [footerHeight, setFooterH] = React.useState(0)
+  const [page, setPage] = React.useState('');
 
   const [login, setLogin] = React.useState('');
 
   const [loadsession, setLoad] = React.useState(true);
+
+
+  const [grandfetch, setFetGrandcount] = React.useState(0);
+  const [grandopen, setGrand] = React.useState(false);
+  const [block, setBlock] = React.useState(false);
+
+  React.useEffect(() => {
+    document.title = page + " | T-POP Megaverse Platform"
+  }, [page])
+
+  const fetchgrand = () => {
+    if (grandfetch != 5) {
+      fetch('http://worldtimeapi.org/api/timezone/etc/utc')
+            .then((response) => response.json())
+            .then((data) => {
+              if (parseInt(data.unixtime) >= eventTime) {
+                setGrand(true)
+              }
+            });
+            let a = grandfetch
+            a += 1
+            setFetGrandcount(a);
+    } else {
+      setBlock(true)
+    }
+  }
+ 
   
   React.useEffect(() => {
     function handleWindowResize() {
@@ -76,13 +109,26 @@ function App() {
     fetch('https://api.cpxdev.tk/home/status')
       .then((response) => response.text())
       .then((data) => setLoad(false));
+
+      var url = new URL(window.location.href);
+      var c = url.searchParams.get("idtest");
+      if (c === '3633d63affc9aa2a30cddae9f683abf7') {
+        setGrand(true)
+      } else {
+        fetchgrand()
+        setInterval(function () {
+          setFetGrandcount(0)
+        }, 120000);
+      }
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
   }, []);
 
   React.useEffect(() => {
-    setFooterH(ref.current.clientHeight)
+    if (ref.current != null){
+      setFooterH(ref.current.clientHeight)
+    } 
   })
 
   React.useEffect(() => {
@@ -117,6 +163,29 @@ function App() {
     setMobileOpen(!mobileOpen);
   };
 
+  if (!grandopen) {
+    return (
+      <>
+       <Backdrop
+       sx={{ backgroundColor: 'rgba(255,255,255,0.4)', zIndex: 1500, position: 'fixed' }}
+       open={true}
+       onClick={() => fetchgrand()}
+       className='point'
+       >
+       <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' width='60px' />
+      <div>
+        You are at T-POP Megaverse Platform. But system is under testing. Please wait until {moment.unix(eventTime).local().locale('en').format("DD MMMM YYYY HH:mm:ss")}
+      </div>
+       </Backdrop>
+         <Snackbar anchorOrigin={{horizontal: "center",vertical: "top" }} open={block} onClose={() => setBlock(false)} sx={{zIndex: 5000}} autoHideDuration={5000}>
+                    <Alert className='point' severity="error">
+                        <AlertTitle>Too many request!</AlertTitle>
+                        Calm down and relax. You will be meet something special. It's not too long
+                    </Alert>
+                </Snackbar>
+      </>
+    )
+  }
  
 
   return (
@@ -253,19 +322,25 @@ function App() {
         <div style={{marginBottom: footerHeight + 'px'}}>
           <BasicSwitch>
             <Route exact path="/">
-              <Home setLoad={(val) => setLoad(val)} lang={langselect} />
+              <Home setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
             <Route exact path="/artists">
-              <Art setLoad={(val) => setLoad(val)} lang={langselect} />
+              <Art setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
             <Route exact path="/artist/:id">
-              <ArtDetail setLoad={(val) => setLoad(val)} lang={langselect} />
+              <ArtDetail setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
             <Route exact path="/news">
-              <News setLoad={(val) => setLoad(val)} lang={langselect} />
+              <News setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
             <Route exact path="/songlist">
-              <TopChart setLoad={(val) => setLoad(val)} lang={langselect} />
+              <TopChart setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
+            </Route>
+            <Route exact path="/about">
+              <About setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
+            </Route>
+            <Route exact path="/contact">
+              <Contact setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
           </BasicSwitch>
         </div>

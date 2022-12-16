@@ -1,0 +1,29 @@
+{
+    "en":{
+        "title": "Contact us",
+        "list": [
+            {
+                "title": "Email",
+                "link": "mailto:admin@cpxdev.tk?subject=[T-POP Platform] <Enter subject here>"
+            },
+            {
+                "title": "Telegram (Online Chat)",
+                "link": "https://t.me/cpxth"
+            }
+        ]
+    },
+    "th":{
+        "title": "ติดต่อหรือแจ้งปัญหา",
+        "list": [
+            {
+                "title": "อีเมล์",
+                "link": "mailto:admin@cpxdev.tk?subject=[แพลตฟอร์ม T-POP] <ระบุหัวเรื่องที่นี่>"
+            },
+            {
+                "title": "เทเลแกรม (แชตออนไลน์)",
+                "link": "https://t.me/cpxth"
+            }
+        ]
+    }
+}
+

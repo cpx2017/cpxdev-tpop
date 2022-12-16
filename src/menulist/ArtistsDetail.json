@@ -1,6 +1,6 @@
 {
     "en":{
-        "title":"T-POP Artist Description (Testing purpose)",
+        "title":"T-POP Artist Description",
         "obj":{
             "type": "Artist Type: ",
             "label": "Artist or Music Label: ",
@@ -10,7 +10,7 @@
         }
     },
     "th":{
-        "title":"รายละเอียดของศิลปิน T-POP (อยู่ระหว่างทดสอบระบบ)",
+        "title":"รายละเอียดของศิลปิน T-POP",
         "obj":{
             "type": "ประเภทของศิลปิน: ",
             "label": "บริษัทที่ดูแลศิลปิน: ",

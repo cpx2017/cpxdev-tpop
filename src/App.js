@@ -84,7 +84,7 @@ function App() {
 
   const fetchgrand = () => {
     if (grandfetch != 5) {
-      fetch('http://worldtimeapi.org/api/timezone/etc/utc')
+      fetch('https://worldtimeapi.org/api/timezone/etc/utc')
             .then((response) => response.json())
             .then((data) => {
               if (parseInt(data.unixtime) >= eventTime) {

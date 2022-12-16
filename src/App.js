@@ -174,7 +174,7 @@ function App() {
        >
        <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' width='60px' />
       <div>
-        You are at T-POP Megaverse Platform. But system is under testing. Please wait until {moment.unix(eventTime).local().locale('en').format("DD MMMM YYYY HH:mm:ss")}
+        You are at T-POP Megaverse Platform. But system is under testing. Please wait until {moment.unix(eventTime).local().locale('en').format("DD MMMM YYYY HH:mm:ss")}. or Click here to fetching
       </div>
        </Backdrop>
          <Snackbar anchorOrigin={{horizontal: "center",vertical: "top" }} open={block} onClose={() => setBlock(false)} sx={{zIndex: 5000}} autoHideDuration={5000}>

@@ -46,11 +46,11 @@ const Home = ({setLoad, lang, setPage}) => {
     }, [lang]);
     return ( 
       <>
-      <Carousel interval={8000}>
-        {pagedetail[langselect].list.map((item, i) => (
-          <Card key={"home-" + item.id} className={width > 1400 ? "padcro" : ''}>
-            {
-              width > 900 ? (
+      {
+         width > 900 ? (
+           <Carousel interval={8000}>
+           {pagedetail[langselect].list.map((item, i) => (
+             <Card key={"home-" + item.id} className={width > 1400 ? "padcro" : ''}>
                 <CardActionArea className='cro-container' onClick={() => History.push('/artist/' + item.id)}>
                   <CardMedia src={item.img} component="img" />
                   <Grow in={true} timeout={1000}>
@@ -59,18 +59,24 @@ const Home = ({setLoad, lang, setPage}) => {
                     </Card>
                   </Grow>
                 </CardActionArea>
-              ) : (
-                <CardActionArea onClick={() => History.push('/artist/' + item.id)}>
-                  <CardMedia src={item.img} component="img" />
-                  <Grow in={true} timeout={1000}>
-                    <CardHeader title={item.artistName} subheader={pagedetail[langselect].listforclick} />
-                  </Grow>
-                </CardActionArea>
-              )
-            }
-          </Card>
+                </Card>
           ))}
       </Carousel>
+              ) : (
+                <Carousel interval={8000}>
+                    {pagedetail[langselect].list.map((item, i) => (
+                      <Card key={"home-" + item.id} className={width > 1400 ? "padcro" : ''}>
+                          <CardActionArea className='cro-container' onClick={() => History.push('/artist/' + item.id)}>
+                      <CardMedia src={item.img} component="img" />
+                      <Grow in={true} timeout={1000}>
+                        <CardHeader title={item.artistName} subheader={pagedetail[langselect].listforclick} />
+                      </Grow>
+                    </CardActionArea>
+                    </Card>
+              ))}
+          </Carousel>
+              )
+      }
         <Typography className='indent mt-4' dangerouslySetInnerHTML={{ __html: pagedetail[langselect].desc }}>
         </Typography>
       </>

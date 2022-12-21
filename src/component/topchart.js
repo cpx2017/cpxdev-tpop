@@ -96,7 +96,7 @@ const Top = ({setLoad, lang, setPage}) => {
                     <CardContent className='rounded' sx={i == 0 ? {background: gold1} : i == 1 ? {background: silver} : i == 2 ? {background: bronze} : null}>
                       <CardActionArea onClick={() => window.open(item.track.external_urls.spotify, "_blank")}>
                         <CardMedia className='mb-2 imgcircle' src={item.track.album.images[0].url} component='img' />
-                          <CardHeader title={"#" +(i +1) + " " + item.track.name} />
+                          <CardHeader title={"#" +(i +1) + " " + item.track.name} subheader={item.track.artists[0].name} />
                       </CardActionArea>
                     </CardContent>
                   </Card>

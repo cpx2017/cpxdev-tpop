@@ -106,7 +106,7 @@ function App() {
     }
 
     window.addEventListener('resize', handleWindowResize);
-    fetch('https://api.cpxdev.tk/home/status')
+    fetch('https://api.cpxdev.tk/tpop/status')
       .then((response) => response.text())
       .then((data) => setLoad(false));
 

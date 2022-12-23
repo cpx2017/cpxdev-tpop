@@ -28,7 +28,7 @@ const Con = ({setLoad, lang, setPage}) => {
       }
       window.addEventListener('resize', handleWindowResize);
       setLoad(true)
-      fetch('https://apiweb.cpxdev.tk/home/status')
+      fetch('https://apiweb.cpxdev.tk/tpop/status')
         .then((response) => response.text())
         .then((data) => {
           setLoad(false)

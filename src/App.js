@@ -60,6 +60,7 @@ const eventTime = 1673337600
 
 
 function App() {
+  const [loadsession, setLoad] = React.useState(true);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -70,8 +71,6 @@ function App() {
   const [page, setPage] = React.useState('');
 
   const [login, setLogin] = React.useState('');
-
-  const [loadsession, setLoad] = React.useState(true);
 
 
   const [grandfetch, setFetGrandcount] = React.useState(0);
@@ -199,7 +198,7 @@ function App() {
       >
       <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' width='60px' />
       </Backdrop>
-      <Slide in={!loadsession} direction="down">
+      <Slide in={grandopen} direction="down">
       <AppBar component="nav" className='appbaredge'>
         <Toolbar disableGutters sx={{justifyContent: 'space-between !important'}}>
           <IconButton

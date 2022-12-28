@@ -199,7 +199,7 @@ function App() {
       >
       <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' width='60px' />
       </Backdrop>
-      <AppBar component="nav">
+      <AppBar component="nav" className='appbaredge'>
         <Toolbar disableGutters sx={{justifyContent: 'space-between !important'}}>
           <IconButton
             color="inherit"

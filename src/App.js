@@ -23,7 +23,7 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-import {Backdrop, Snackbar, Alert, AlertTitle} from '@mui/material';
+import {Backdrop, Snackbar, Alert, AlertTitle, Slide} from '@mui/material';
 
 import moment from 'moment'
 
@@ -199,6 +199,7 @@ function App() {
       >
       <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' width='60px' />
       </Backdrop>
+      <Slide in={!loadsession} direction="down">
       <AppBar component="nav" className='appbaredge'>
         <Toolbar disableGutters sx={{justifyContent: 'space-between !important'}}>
           <IconButton
@@ -290,6 +291,7 @@ function App() {
           </Box>
         </Toolbar>
       </AppBar>
+      </Slide>
       <Box component="nav">
         <Drawer
           variant="temporary"

@@ -12,7 +12,7 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-const Art = ({setLoad, lang, setPage}) => {
+const Art = ({load, setLoad, lang, setPage}) => {
     const [width, setRealwidth] = React.useState(window.innerWidth);
     const [langselect, setLang] = React.useState('en');
     const [rootArr, setRootArr] = React.useState([]);
@@ -51,6 +51,8 @@ const Art = ({setLoad, lang, setPage}) => {
       let datatemp = rootArr
       setRootArr(datatemp.sort((a, b) => (a.artName[lang] > b.artName[lang]) ? 1 : ((a.artName[lang] < b.artName[lang]) ? -1 : 0)))
     }, [lang]);
+
+    if (load) return null
     return ( 
         <>
           <CardHeader title={(<h3>{pagedetail[langselect].title}</h3>)} />

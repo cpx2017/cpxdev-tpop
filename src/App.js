@@ -194,6 +194,7 @@ function App() {
     <Box>
     <Backdrop
       sx={{ backgroundColor: 'rgba(255,255,255,1)', zIndex: 1500, position: 'fixed' }}
+      transitionDuration={600}
       open={loadsession}
       >
       <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' width='60px' />
@@ -326,25 +327,25 @@ function App() {
         <div style={{marginBottom: footerHeight + 'px'}}>
           <BasicSwitch>
             <Route exact path="/">
-              <Home setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
+              <Home load={loadsession} setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
             <Route exact path="/artists">
-              <Art setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
+              <Art load={loadsession} setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
             <Route exact path="/artist/:id">
-              <ArtDetail setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
+              <ArtDetail load={loadsession} setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
             <Route exact path="/news">
-              <News setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
+              <News load={loadsession} setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
             <Route exact path="/songlist">
-              <TopChart setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
+              <TopChart load={loadsession} setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
             <Route exact path="/about">
-              <About setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
+              <About load={loadsession} setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
             <Route exact path="/contact">
-              <Contact setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
+              <Contact load={loadsession} setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
           </BasicSwitch>
         </div>

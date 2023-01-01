@@ -10,7 +10,7 @@ import {
 
 import Carousel from 'react-material-ui-carousel'
 
-const Home = ({setLoad, lang, setPage}) => {
+const Home = ({load, setLoad, lang, setPage}) => {
     const [width, setRealwidth] = React.useState(window.innerWidth);
     const [langselect, setLang] = React.useState('en');
     const History = useHistory();
@@ -44,6 +44,12 @@ const Home = ({setLoad, lang, setPage}) => {
     React.useEffect(() => {
       setLang(lang)
     }, [lang]);
+
+    React.useEffect(() => {
+      setLang(lang)
+    }, [load]);
+
+    if (load) return null
     return ( 
       <>
       {

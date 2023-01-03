@@ -201,7 +201,7 @@ function App() {
 
   function changeroute(page) {
     setLoad(true)
-    setTimeout(() => history.push(page), 600);
+    setTimeout(() => history.push(page), 500);
   }
 
  
@@ -329,7 +329,7 @@ function App() {
       <Divider />
       <List>
         {(langselect == 'en' ?navItemsEn:navItemsTh).map((item, i) => (
-          <ListItem component={Link} to={'/' + navItemsLink[i]} key={item} disablePadding>
+          <ListItem component={Link} onClick={() => changeroute('/' + navItemsLink[i])} key={item} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
               <ListItemText primary={item} />
             </ListItemButton>

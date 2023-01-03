@@ -200,8 +200,10 @@ function App() {
   }
 
   function changeroute(page) {
-    setLoad(true)
-    setTimeout(() => history.push(page), 500);
+    if (page != window.location.pathname) {
+      setLoad(true)
+      setTimeout(() => history.push(page), 500);
+    }
   }
 
  

@@ -58,6 +58,7 @@ const settingsEn = ['Account', 'Logout'];
 const settingsTh = ['ตั้งค่าบัญชี', 'ออกจากระบบ'];
 const eventTime = 1673337600
 
+const aa = true
 
 function App() {
   const [loadsession, setLoad] = React.useState(true);
@@ -72,6 +73,7 @@ function App() {
 
   const [login, setLogin] = React.useState('');
 
+  const history = useHistory();
 
   const [grandfetch, setFetGrandcount] = React.useState(0);
   const [grandopen, setGrand] = React.useState(false);
@@ -105,9 +107,9 @@ function App() {
     }
 
     window.addEventListener('resize', handleWindowResize);
-    fetch('https://apiweb.cpxdev.tk/tpop/status')
-      .then((response) => response.text())
-      .then((data) => setLoad(false));
+    // fetch('https://apiweb.cpxdev.tk/tpop/status')
+    //   .then((response) => response.text())
+    //   .then((data) => setLoad(false));
 
       var url = new URL(window.location.href);
       var c = url.searchParams.get("idtest");
@@ -123,6 +125,7 @@ function App() {
       window.removeEventListener('resize', handleWindowResize);
     };
   }, []);
+
 
   React.useEffect(() => {
     if (ref.current != null){
@@ -187,6 +190,12 @@ function App() {
       </>
     )
   }
+
+  function changeroute(page) {
+    setLoad(true)
+    setTimeout(() => history.push(page), 500);
+  }
+
  
   var metaThemeColor = document.querySelector("meta[name=theme-color]");
   metaThemeColor.setAttribute("content", 'rgb(25, 118, 210)');
@@ -233,7 +242,7 @@ function App() {
           )}
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {(langselect == 'en' ?navItemsEn:navItemsTh).map((item, i) => (
-              <Button component={Link} to={'/' + navItemsLink[i]} key={item} sx={{ color: '#fff' }}>
+              <Button component={Link} onClick={() => changeroute('/' + navItemsLink[i])} key={item} sx={{ color: '#fff' }}>
                 {item}
               </Button>
             ))}

@@ -54,7 +54,7 @@ const Art = ({load, setLoad, lang, setPage}) => {
 
     const changep = (artid) => {
       setLoad(true)
-      setTimeout(() => History.push('/artist/' + artid))
+      setTimeout(() => History.push('/artist/' + artid), 600)
     }
 
     if (load) return null

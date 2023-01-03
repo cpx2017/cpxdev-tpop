@@ -201,7 +201,7 @@ function App() {
 
   function changeroute(page) {
     setLoad(true)
-    setTimeout(() => history.push(page), 500);
+    setTimeout(() => history.push(page), 600);
   }
 
  

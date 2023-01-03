@@ -52,6 +52,11 @@ const Art = ({load, setLoad, lang, setPage}) => {
       setRootArr(datatemp.sort((a, b) => (a.artName[lang] > b.artName[lang]) ? 1 : ((a.artName[lang] < b.artName[lang]) ? -1 : 0)))
     }, [lang]);
 
+    const changep = (artid) => {
+      setLoad(true)
+      setTimeout(() => History.push('/artist/' + artid))
+    }
+
     if (load) return null
     return ( 
         <>
@@ -62,7 +67,7 @@ const Art = ({load, setLoad, lang, setPage}) => {
               {rootArr.map((item) => (
                   <Card key={item.artId} className={'col-md-3 mt-2 text-center'}>
                     <CardContent>
-                      <CardActionArea onClick={() =>  setTimeout(() => History.push('/artist/' + item.artId), 500)}>
+                      <CardActionArea onClick={() =>  changep(item.artId)}>
                         <CardMedia className='mb-2 imgcircle' src={item.artImg} component='img' />
                           <Typography variant='h5'>
                             {item.artName[langselect]}

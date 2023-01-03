@@ -22,7 +22,7 @@ function numberWithCommas(x) {
     return Number(x).toLocaleString('en');
 }
 
-const ArtDetail = ({setLoad, lang, setPage}) => {
+const ArtDetail = ({load, setLoad, lang, setPage}) => {
     const [width, setRealwidth] = React.useState(window.innerWidth);
     const [langselect, setLang] = React.useState('en');
     const [rootArr, setRootArr] = React.useState(null);
@@ -128,6 +128,8 @@ const ArtDetail = ({setLoad, lang, setPage}) => {
     React.useEffect(() => {
       setLang(lang)
     }, [lang]);
+
+    if (load) return null
     return ( 
         <>
           <CardHeader title={rootArr != null ? (<h2>{rootArr.artName[langselect]}</h2>) : (<h2>กำลังโหลด</h2>)} subheader={pagedetail[langselect].title} />

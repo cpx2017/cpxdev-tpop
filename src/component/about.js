@@ -8,7 +8,7 @@ import {
   useHistory
 } from "react-router-dom";
 
-const About = ({setLoad, lang, setPage}) => {
+const About = ({load, setLoad, lang, setPage}) => {
     const [width, setRealwidth] = React.useState(window.innerWidth);
     const [langselect, setLang] = React.useState('en');
     const History = useHistory();
@@ -38,6 +38,8 @@ const About = ({setLoad, lang, setPage}) => {
     React.useEffect(() => {
       setLang(lang)
     }, [lang]);
+
+    if (load) return null
     return ( 
       <>
       <CardHeader title={pagedetail[langselect].title} />

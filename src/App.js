@@ -58,7 +58,6 @@ const settingsEn = ['Account', 'Logout'];
 const settingsTh = ['ตั้งค่าบัญชี', 'ออกจากระบบ'];
 const eventTime = 1673337600
 
-let check;
 
 function App() {
   const [loadsession, setLoad] = React.useState(true);
@@ -77,9 +76,6 @@ function App() {
   const [grandfetch, setFetGrandcount] = React.useState(0);
   const [grandopen, setGrand] = React.useState(false);
   const [block, setBlock] = React.useState(false);
-
-    const [online, setOnline] = React.useState(true);
-
 
   React.useEffect(() => {
     document.title = page + " | T-POP Megaverse Platform"
@@ -108,26 +104,10 @@ function App() {
       setRealwidth(window.innerWidth);
     }
 
-    const refreshonline = () => {
-      fetch('https://ipv4-check-perf.radar.cloudflare.com/api/info')
-      .then((response) => response.json())
-      .then((data) => setOnline(true)).catch(() => {
-        setOnline(false)
-      });
-    }
-
     window.addEventListener('resize', handleWindowResize);
-
-     refreshonline()
-    check = setInterval(function () {
-          refreshonline()
-        }, 1000);
     fetch('https://apiweb.cpxdev.tk/tpop/status')
       .then((response) => response.text())
-      .then((data) => {
-        setLoad(false)
-        setOnline(true)
-      });
+      .then((data) => setLoad(false));
 
       var url = new URL(window.location.href);
       var c = url.searchParams.get("idtest");
@@ -182,26 +162,6 @@ function App() {
     setMobileOpen(!mobileOpen);
   };
 
-
-  if (!online) {
-    var metaThemeColor = document.querySelector("meta[name=theme-color]");
-    metaThemeColor.setAttribute("content", '#FBA547');
-    return (
-      <>
-       <Backdrop
-       sx={{ backgroundColor: 'rgba(255,255,255,0.4)', zIndex: 1500, position: 'fixed' }}
-       open={!online}
-       className='point'
-       >
-       <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' width='60px' />
-      <div>
-        {langselect == 'th' ? 'การเชื่อมต่อกับระบบขัดข้อง กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตและรอการเชื่อมต่อใหม่อีกครั้ง' : 'You are offline. please check your internet connection and wait for the moment.'}
-      </div>
-       </Backdrop>
-      </>
-    )
-  } else {
-    
   if (!grandopen) {
     var metaThemeColor = document.querySelector("meta[name=theme-color]");
     metaThemeColor.setAttribute("content", '#fff');
@@ -234,13 +194,12 @@ function App() {
     <Box>
     <Backdrop
       sx={{ backgroundColor: 'rgba(255,255,255,1)', zIndex: 1500, position: 'fixed' }}
-      transitionDuration={600}
       open={loadsession}
       transitionDuration={{ appear: 300, enter: 300, exit: 800 }}
       >
       <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' width='60px' />
       </Backdrop>
-      <Slide in={grandopen} direction="down">
+      <Slide in={!loadsession} direction="down">
       <AppBar component="nav" className='appbaredge'>
         <Toolbar disableGutters sx={{justifyContent: 'space-between !important'}}>
           <IconButton
@@ -368,37 +327,38 @@ function App() {
         <div style={{marginBottom: footerHeight + 'px'}}>
           <BasicSwitch>
             <Route exact path="/">
-              <Home load={loadsession} setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
+              <Home setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
             <Route exact path="/artists">
-              <Art load={loadsession} setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
+              <Art setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
             <Route exact path="/artist/:id">
-              <ArtDetail load={loadsession} setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
+              <ArtDetail setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
             <Route exact path="/news">
-              <News load={loadsession} setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
+              <News setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
             <Route exact path="/songlist">
-              <TopChart load={loadsession} setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
+              <TopChart setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
             <Route exact path="/about">
-              <About load={loadsession} setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
+              <About setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
             <Route exact path="/contact">
-              <Contact load={loadsession} setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
+              <Contact setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
           </BasicSwitch>
         </div>
       </Box>
       <br />
+      <Slide in={!loadsession} direction="up">
       <footer className='fixed-bottom text-center text-dark pb-1 pt-1 bg-light' ref={ref}>
         &copy; Copyright 2023 CPXDevStudio<br />
         All artist information and images are the property of the record label owner and the artist themselves. This website is intended to support artists on a non-profit basis.
       </footer>
+      </Slide>
     </Box>
   );
-  }
 }
 
 export default App

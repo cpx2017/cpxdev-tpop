@@ -28,7 +28,7 @@ import {Backdrop, Snackbar, Alert, AlertTitle, Slide} from '@mui/material';
 import moment from 'moment'
 
 import {
-  BrowserRouter,
+  useLocation,
   Route,
   Link,
   Switch as BasicSwitch,
@@ -80,6 +80,7 @@ function App() {
   const [block, setBlock] = React.useState(false);
 
   const [done, setDone] = React.useState(false);
+  const win = useLocation()
 
   React.useEffect(() => {
     document.title = page + " | T-POP Megaverse Platform"
@@ -200,7 +201,7 @@ function App() {
   }
 
   function changeroute(page) {
-    if (page != window.location.pathname) {
+    if (page != win.pathname) {
       setLoad(true)
       setTimeout(() => history.push(page), 500);
     }

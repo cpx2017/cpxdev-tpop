@@ -62,7 +62,7 @@ const Art = ({load, setLoad, lang, setPage}) => {
               {rootArr.map((item) => (
                   <Card key={item.artId} className={'col-md-3 mt-2 text-center'}>
                     <CardContent>
-                      <CardActionArea onClick={() => History.push('/artist/' + item.artId)}>
+                      <CardActionArea onClick={() =>  setTimeout(() => History.push('/artist/' + item.artId), 500)}>
                         <CardMedia className='mb-2 imgcircle' src={item.artImg} component='img' />
                           <Typography variant='h5'>
                             {item.artName[langselect]}

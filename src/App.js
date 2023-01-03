@@ -79,9 +79,17 @@ function App() {
   const [grandopen, setGrand] = React.useState(false);
   const [block, setBlock] = React.useState(false);
 
+  const [done, setDone] = React.useState(false);
+
   React.useEffect(() => {
     document.title = page + " | T-POP Megaverse Platform"
   }, [page])
+
+  React.useEffect(() => {
+    if (!loadsession) {
+        setDone(true)
+    }
+  }, [loadsession])
 
   const fetchgrand = () => {
     if (grandfetch != 5) {
@@ -89,7 +97,7 @@ function App() {
             .then((response) => response.json())
             .then((data) => {
               if (parseInt(data.unixtime) >= eventTime) {
-                setTimeout(() => setGrand(true), 500);
+                setGrand(true)
               }
             });
             let a = grandfetch
@@ -114,7 +122,7 @@ function App() {
       var url = new URL(window.location.href);
       var c = url.searchParams.get("idtest");
       if (c === '3633d63affc9aa2a30cddae9f683abf7') {
-        setTimeout(() => setGrand(true), 500);
+        setGrand(true)
       } else {
         fetchgrand()
         setInterval(function () {
@@ -204,7 +212,7 @@ function App() {
     <Backdrop
       sx={{ backgroundColor: 'rgba(255,255,255,1)', zIndex: 1500, position: 'fixed' }}
       open={loadsession}
-      transitionDuration={{ appear: 300, enter: 300, exit: 800 }}
+      transitionDuration={{ appear: done ? 300 : 0, enter: done ? 300 : 0, exit: 800 }}
       >
       <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' width='60px' />
       </Backdrop>

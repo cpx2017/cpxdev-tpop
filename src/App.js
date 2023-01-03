@@ -89,7 +89,7 @@ function App() {
             .then((response) => response.json())
             .then((data) => {
               if (parseInt(data.unixtime) >= eventTime) {
-                setGrand(true)
+                setTimeout(() => setGrand(true), 500);
               }
             });
             let a = grandfetch
@@ -114,7 +114,7 @@ function App() {
       var url = new URL(window.location.href);
       var c = url.searchParams.get("idtest");
       if (c === '3633d63affc9aa2a30cddae9f683abf7') {
-        setGrand(true)
+        setTimeout(() => setGrand(true), 500);
       } else {
         fetchgrand()
         setInterval(function () {

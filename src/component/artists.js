@@ -110,7 +110,7 @@ const Art = ({load, setLoad, lang, setPage}) => {
             <div className='container col-12'>
               <div className='row d-flex justify-content-center'>
               {rootArr.map((item) => (
-                  <Card key={item.artId} className={'col-md-3 mt-2 text-center'}>
+                  <Card key={item.artId} className={'col-lg-3 col-md-4 mt-2 text-center'}>
                     <CardContent>
                       <CardActionArea onClick={() =>  changep(item.artId)}>
                         <CardMedia className='mb-2 imgcircle' src={item.artImg} component='img' />

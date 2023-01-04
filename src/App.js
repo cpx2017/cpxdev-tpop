@@ -353,7 +353,7 @@ function App() {
               <Art setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
             <Route exact path="/artist/:id">
-              <ArtDetail setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
+              <ArtDetail setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} footerref={ref} />
             </Route>
             <Route exact path="/news">
               <News setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />

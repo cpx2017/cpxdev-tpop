@@ -23,7 +23,7 @@ function numberWithCommas(x) {
     return Number(x).toLocaleString('en');
 }
 
-const ArtDetail = ({load, setLoad, lang, setPage}) => {
+const ArtDetail = ({load, setLoad, lang, setPage, footerref}) => {
     const [width, setRealwidth] = React.useState(window.innerWidth);
     const [langselect, setLang] = React.useState('en');
     const [rootArr, setRootArr] = React.useState(null);
@@ -40,8 +40,8 @@ const ArtDetail = ({load, setLoad, lang, setPage}) => {
 
     const handleScroll = () => {
         const position = window.pageYOffset;
-        if (width <= 800) {
-          if (position <= 300) {
+        if (width <= 1000) {
+          if (position <= 100) {
             setHover(true)
           } else {
             setHover(false)
@@ -161,8 +161,8 @@ const ArtDetail = ({load, setLoad, lang, setPage}) => {
     return ( 
         <>
         {
-          width > 800 && (
-            <Fab size="large" sx={{position: 'fixed', zIndex: 1200, bottom: 100, right: 20, opacity: (hover ? 1 : 0.2)}} color="primary"
+          width > 1000 && (
+            <Fab size="large" sx={{position: 'fixed', zIndex: 1200, bottom: (footerref.current == null ? 10 : footerref.current.clientHeight + 10), right: 10, opacity: (hover ? 1 : 0.4)}} color="primary"
             onMouseEnter={e => {
               setHover(true);
             }}
@@ -175,8 +175,8 @@ const ArtDetail = ({load, setLoad, lang, setPage}) => {
           )
         }
          {
-          width <= 800 && (
-            <Fab size="large" sx={{position: 'fixed', zIndex: 1200, top: 100, right: 30, opacity: (hover ? 1 : 0.3)}} color="primary"
+          width <= 1000 && (
+            <Fab size="large" sx={{position: 'fixed', zIndex: 1200, bottom: (footerref.current == null ? 10 : footerref.current.clientHeight + 10), right: 10, opacity: (hover ? 1 : 0.3)}} color="primary"
             onClick={() => onBack()}>
              <ArrowBackIcon/>
            </Fab>
@@ -242,7 +242,7 @@ const ArtDetail = ({load, setLoad, lang, setPage}) => {
                                         <div className='row d-flex justify-content-center mt-5'>
                                             <CardHeader className='col-12' title={langselect == 'th' ? 'เพลงที่มีผู้ฟังมากที่สุดในเดือนนี้' : 'Top Song of this month'} />
                                             {spot.map((itemobj, index) => (
-                                                <Card key={itemobj.id} className={'col-md-3 mt-2 text-center'}>
+                                                <Card key={itemobj.id} className={'col-lg-3 col-md-4 mt-2 text-center'}>
                                                         <CardContent>
                                                         <CardActionArea onClick={() => window.open(itemobj.external_urls.spotify, "_blank")}>
                                                             <CardMedia className='mb-3' src={itemobj.album.images[0].url} component='img' />

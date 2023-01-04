@@ -1,7 +1,7 @@
 import React from 'react'
 import pagedetail from '../menulist/ArtistsDetail.json'
 import Typography from '@mui/material/Typography';
-import { CardHeader, CardMedia, Card, CardActionArea, CardContent, ListItem, Skeleton } from '@mui/material';
+import { CardHeader, CardMedia, Card, CardActionArea, CardContent, Fab, Skeleton } from '@mui/material';
 import moment from 'moment'
 import 'moment/locale/th'  // without this line it didn't work
 
@@ -9,6 +9,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LanguageIcon from '@mui/icons-material/Language';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import {
     useParams,
@@ -32,8 +33,29 @@ const ArtDetail = ({load, setLoad, lang, setPage}) => {
     const [Update, setUpdate] = React.useState(null);
     const [Currentshow, setCurrentshow] = React.useState(null);
 
+    const [hover, setHover] = React.useState(true);
+
     let { id } = useParams();
     const History = useHistory();
+
+    const handleScroll = () => {
+        const position = window.pageYOffset;
+        if (width <= 800) {
+          if (position <= 300) {
+            setHover(true)
+          } else {
+            setHover(false)
+          }
+        }
+    };
+
+    React.useEffect(() => {
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
   
     const Fetchspot = (keyword) => {
         fetch('https://apiweb.cpxdev.tk/tpop/gettopsong/' + keyword, {
@@ -119,6 +141,7 @@ const ArtDetail = ({load, setLoad, lang, setPage}) => {
                 History.push("/artists")
               }
             setLoad(false)
+            setTimeout(() => setHover(false), 3000);
           });
       return () => {
         window.removeEventListener('resize', handleWindowResize);
@@ -129,10 +152,37 @@ const ArtDetail = ({load, setLoad, lang, setPage}) => {
       setLang(lang)
     }, [lang]);
 
+    const onBack = () => {
+      setLoad(true)
+      setTimeout(() => History.goBack(), 500);
+    }
+
     if (load) return null
     return ( 
         <>
-          <CardHeader title={rootArr != null ? (<h2>{rootArr.artName[langselect]}</h2>) : (<h2>กำลังโหลด</h2>)} subheader={pagedetail[langselect].title} />
+        {
+          width > 800 && (
+            <Fab size="large" sx={{position: 'fixed', zIndex: 1200, bottom: 100, right: 20, opacity: (hover ? 1 : 0.2)}} color="primary"
+            onMouseEnter={e => {
+              setHover(true);
+            }}
+            onMouseLeave={e => {
+              setTimeout(() => setHover(false), 1000)
+            }}
+            onClick={() => onBack()}>
+             <ArrowBackIcon/>
+           </Fab>
+          )
+        }
+         {
+          width <= 800 && (
+            <Fab size="large" sx={{position: 'fixed', zIndex: 1200, top: 100, right: 30, opacity: (hover ? 1 : 0.3)}} color="primary"
+            onClick={() => onBack()}>
+             <ArrowBackIcon/>
+           </Fab>
+          )
+        }
+          <CardHeader title={rootArr != null ? (<h2>{rootArr.artName[langselect]}</h2>) : (<h2>{lang == 'th' ? 'กำลังโหลด' : 'Loading'}</h2>)} subheader={pagedetail[langselect].title} />
                 {
                     rootArr != null && (
                         <div className='text-center'>

@@ -14,7 +14,7 @@ function capitalizeFirstLetter(string) {
 
 const Art = ({load, setLoad, lang, setPage}) => {
     const [width, setRealwidth] = React.useState(window.innerWidth);
-    const [langselect, setLang] = React.useState('en');
+    const [langselect, setLang] = React.useState(lang);
     const [rootArr, setRootArr] = React.useState([]);
 
     const [loadInfinite, setInfinLoad] = React.useState(false);
@@ -29,11 +29,28 @@ const Art = ({load, setLoad, lang, setPage}) => {
       })
         .then((response) => response.json())
         .then((data) => {
-          if (data.length > 0) {
-            setRootArr(data.sort((a, b) => (a.artName[lang] > b.artName[lang]) ? 1 : ((a.artName[lang] < b.artName[lang]) ? -1 : 0)))
+          try {
+            const getdata = JSON.parse(sessionStorage.getItem('artlistprevious'))
+            if (getdata.lang == localStorage.getItem("tpoplang")) {
+              setDone(getdata.updatedone)
+              setAlertDone(getdata.updatedone)
+              setRootArr(getdata.items)
+            } else {
+              throw new Error("")
+            }
+            sessionStorage.removeItem('artlistprevious')
+          } catch {
+            sessionStorage.removeItem('artlistprevious')
+            if (data.length > 0) {
+              setRootArr(data.sort((a, b) => (a.artName[lang] > b.artName[lang]) ? 1 : ((a.artName[lang] < b.artName[lang]) ? -1 : 0)))
+            }
+            if (data.length < 8) {
+              setDone(true)
+            } else {
+              setDone(false)
+            }
+            setAlertDone(false)
           }
-          setDone(false)
-          setAlertDone(false)
           setLoad(false)
         });
     }
@@ -56,12 +73,20 @@ const Art = ({load, setLoad, lang, setPage}) => {
     }, []);
     
     React.useEffect(() => {
-      FetchData()
-      setTimeout(() => setLang(lang), 600)
+      if (lang != langselect) {
+        FetchData()
+        setTimeout(() => setLang(lang), 600)
+      }
     }, [lang]);
 
     const changep = (artid) => {
       setLoad(true)
+      const obj = {
+        lang: lang,
+        updatedone: updatedone,
+        items: rootArr
+      }
+      sessionStorage.setItem("artlistprevious", JSON.stringify(obj))
       setTimeout(() => History.push('/artist/' + artid), 600)
     }
     

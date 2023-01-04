@@ -342,7 +342,7 @@ function App() {
                     select
                     label={langselect == 'en' ? 'Choose Language': 'กรุณาเลือกภาษา'}
                     value={langselect}
-                    onChange={(e) => setLang(e.target.value)}
+                    onChange={(e) => {setLang(e.target.value); setTimeout(() => handleCloseUserMenu(), 500)}}
                     fullWidth={true}
                     variant="standard"
                   >

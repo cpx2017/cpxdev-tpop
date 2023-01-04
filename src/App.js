@@ -80,6 +80,7 @@ function App() {
   const [block, setBlock] = React.useState(false);
 
   const [done, setDone] = React.useState(false);
+  const [offline, setOffline] = React.useState(false);
   const win = useLocation()
 
   React.useEffect(() => {
@@ -109,6 +110,15 @@ function App() {
     }
   }
  
+  const testonline = () => {
+    fetch('https://www.cloudflare.com/cdn-cgi/rum', {method: 'post'})
+      .then((response) => response.text())
+      .then((data) => {
+        setOffline(false)
+      }).catch(() => {
+        setOffline(true)
+      });
+  }
   
   React.useEffect(() => {
     function handleWindowResize() {
@@ -116,20 +126,20 @@ function App() {
     }
 
     window.addEventListener('resize', handleWindowResize);
-    // fetch('https://apiweb.cpxdev.tk/tpop/status')
-    //   .then((response) => response.text())
-    //   .then((data) => setLoad(false));
-
+    setInterval(function () {
+      testonline()
+    }, 2000);
       var url = new URL(window.location.href);
-      var c = url.searchParams.get("idtest");
-      if (c === '3633d63affc9aa2a30cddae9f683abf7') {
-        setGrand(true)
-      } else {
-        fetchgrand()
-        setInterval(function () {
-          setFetGrandcount(0)
-        }, 120000);
-      }
+        var c = url.searchParams.get("idtest");
+        if (c === '3633d63affc9aa2a30cddae9f683abf7') {
+          setGrand(true)
+        } else {
+          fetchgrand()
+          setInterval(function () {
+            setFetGrandcount(0)
+          }, 120000);
+        }
+
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
@@ -173,6 +183,51 @@ function App() {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  if (offline) {
+    var metaThemeColor = document.querySelector("meta[name=theme-color]");
+    metaThemeColor.setAttribute("content", '#fff');
+    return (
+      <>
+       <Backdrop
+       sx={{ backgroundColor: 'rgba(255,255,255,0.4)', zIndex: 1501, position: 'fixed' }}
+       open={offline}
+       className='point'
+       >
+       <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' width='60px' />
+      <div>
+        {langselect == 'th' ? 'พบปัญหาการเชื่อมต่อ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตและรอสักครู่' : 'Connection error, please check your internet connection and wait for moment'}
+      </div>
+       </Backdrop>
+      </>
+    )
+  }
+
+  if (!offline && !grandopen) {
+    var metaThemeColor = document.querySelector("meta[name=theme-color]");
+    metaThemeColor.setAttribute("content", '#fff');
+    return (
+      <>
+       <Backdrop
+       sx={{ backgroundColor: 'rgba(255,255,255,0.4)', zIndex: 1500, position: 'fixed' }}
+       open={true}
+       onClick={() => fetchgrand()}
+       className='point'
+       >
+       <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' width='60px' />
+      <div>
+        You are at T-POP Megaverse Platform. But system is under testing. Please wait until {moment.unix(eventTime).local().locale('en').format("DD MMMM YYYY HH:mm:ss")}. or Click here to fetching
+      </div>
+       </Backdrop>
+         <Snackbar anchorOrigin={{horizontal: "center",vertical: "top" }} open={block} onClose={() => setBlock(false)} sx={{zIndex: 5000}} autoHideDuration={5000}>
+                    <Alert className='point' severity="error">
+                        <AlertTitle>Too many request!</AlertTitle>
+                        Calm down and relax. You will be meet something special. It's not too long
+                    </Alert>
+                </Snackbar>
+      </>
+    )
+  }
 
   if (!grandopen) {
     var metaThemeColor = document.querySelector("meta[name=theme-color]");

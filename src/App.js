@@ -186,7 +186,7 @@ function App() {
 
   if (offline) {
     var metaThemeColor = document.querySelector("meta[name=theme-color]");
-    metaThemeColor.setAttribute("content", '#fff');
+    metaThemeColor.setAttribute("content", '#fc2003');
     return (
       <>
        <Backdrop

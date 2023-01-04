@@ -20,7 +20,7 @@ const Con = ({load, setLoad, lang, setPage}) => {
       function handleWindowResize() {
         setRealwidth(window.innerWidth);
       }
-  
+      sessionStorage.removeItem('artlistprevious')
       if (lang == 'th') {
         setPage('ติดต่อเรา')
       } else {

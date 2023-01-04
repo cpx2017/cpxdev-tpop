@@ -42,7 +42,7 @@ const News = ({load, setLoad, lang, setPage}) => {
       function handleWindowResize() {
         setRealwidth(window.innerWidth);
       }
-  
+      sessionStorage.removeItem('artlistprevious')
       if (lang == 'th') {
         setPage('ข่าวสาร T-POP')
       } else {

@@ -20,7 +20,7 @@ const Home = ({load, setLoad, lang, setPage}) => {
       function handleWindowResize() {
         setRealwidth(window.innerWidth);
       }
-  
+      sessionStorage.removeItem('artlistprevious')
       if (lang == 'th') {
         setPage('หน้าหลัก')
       } else {

@@ -51,7 +51,7 @@ const Top = ({load, setLoad, lang, setPage}) => {
       function handleWindowResize() {
         setRealwidth(window.innerWidth);
       }
-
+      sessionStorage.removeItem('artlistprevious')
       if (width < 800) {
         setfwoptions({
           speed: 1,

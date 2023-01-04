@@ -111,7 +111,7 @@ function App() {
   }
  
   const testonline = () => {
-    fetch('https://www.cloudflare.com/cdn-cgi/rum', {method: 'post'})
+    fetch('https://apiweb.cpxdev.tk/home/checkstat', {method: 'get'})
       .then((response) => response.text())
       .then((data) => {
         setOffline(false)
@@ -128,7 +128,7 @@ function App() {
     window.addEventListener('resize', handleWindowResize);
     setInterval(function () {
       testonline()
-    }, 2000);
+    }, 1000);
       var url = new URL(window.location.href);
         var c = url.searchParams.get("idtest");
         if (c === '3633d63affc9aa2a30cddae9f683abf7') {

@@ -33,7 +33,6 @@ const Art = ({load, setLoad, lang, setPage}) => {
             const getdata = JSON.parse(sessionStorage.getItem('artlistprevious'))
             if (getdata.lang == localStorage.getItem("tpoplang")) {
               setDone(getdata.updatedone)
-              setAlertDone(getdata.updatedone)
               setRootArr(getdata.items)
             } else {
               throw new Error("")

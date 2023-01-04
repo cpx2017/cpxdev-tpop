@@ -77,7 +77,7 @@ const Home = ({load, setLoad, lang, setPage}) => {
                 <Carousel interval={8000}>
                     {pagedetail[langselect].list.map((item, i) => (
                       <Card key={"home-" + item.id} className={width > 1400 ? "padcro" : ''}>
-                          <CardActionArea className='cro-container' onClick={() => History.push('/artist/' + item.id)}>
+                          <CardActionArea className='cro-container' onClick={() => changep(item.id)}>
                       <CardMedia src={item.img} component="img" />
                       <Grow in={true} timeout={1000}>
                         <CardHeader title={item.artistName} subheader={pagedetail[langselect].listforclick} />

@@ -49,6 +49,11 @@ const Home = ({load, setLoad, lang, setPage}) => {
       setLang(lang)
     }, [load]);
 
+    const changep = (artid) => {
+      setLoad(true)
+      setTimeout(() => History.push('/artist/' + artid), 600)
+    }
+
     if (load) return null
     return ( 
       <>
@@ -57,7 +62,7 @@ const Home = ({load, setLoad, lang, setPage}) => {
            <Carousel interval={8000}>
            {pagedetail[langselect].list.map((item, i) => (
              <Card key={"home-" + item.id} className={width > 1400 ? "padcro" : ''}>
-                <CardActionArea className='cro-container' onClick={() => History.push('/artist/' + item.id)}>
+                <CardActionArea className='cro-container' onClick={() => changep(item.id)}>
                   <CardMedia src={item.img} component="img" />
                   <Grow in={true} timeout={1000}>
                     <Card className='cro-text'>

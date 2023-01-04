@@ -32,6 +32,8 @@ const Art = ({load, setLoad, lang, setPage}) => {
           if (data.length > 0) {
             setRootArr(data.sort((a, b) => (a.artName[lang] > b.artName[lang]) ? 1 : ((a.artName[lang] < b.artName[lang]) ? -1 : 0)))
           }
+          setDone(false)
+          setAlertDone(false)
           setLoad(false)
         });
     }

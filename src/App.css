@@ -66,3 +66,8 @@
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 }
+
+.swal2-container {
+  z-index: 3000 !important;
+  width: 100vw !important;
+}

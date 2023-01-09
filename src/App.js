@@ -15,6 +15,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import GoogleIcon from '@mui/icons-material/Google';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 import TextField from '@mui/material/TextField';
 
@@ -23,7 +25,10 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-import {Backdrop, Snackbar, Alert, AlertTitle, Slide} from '@mui/material';
+import Swal from 'sweetalert2'
+
+import {Backdrop, Snackbar, Alert, AlertTitle, Slide, Dialog, DialogActions, DialogTitle, DialogContent, DialogContentText, ButtonGroup} from '@mui/material';
+
 
 import moment from 'moment'
 
@@ -42,6 +47,19 @@ import News from './component/news';
 import TopChart from './component/topchart';
 import About from './component/about';
 import Contact from './component/contact';
+import Regis from './component/register';
+
+import {
+  GoogleAuthProvider,
+  TwitterAuthProvider,
+  signInWithPopup,
+  signOut,
+  OAuthProvider,
+  deleteUser
+} from "firebase/auth";
+import auth from "./fbindex";
+
+import 'sweetalert2/dist/sweetalert2.min.css'
 
 const drawerWidth = 240;
 const navItemsLink = ['', 'artists', 'news', 'songlist', 'about', 'contact'];
@@ -71,7 +89,7 @@ function App() {
   const [footerHeight, setFooterH] = React.useState(0)
   const [page, setPage] = React.useState('');
 
-  const [login, setLogin] = React.useState('');
+  const [login, setLogin] = React.useState(null);
 
   const history = useHistory();
 
@@ -81,6 +99,9 @@ function App() {
 
   const [done, setDone] = React.useState(false);
   const [offline, setOffline] = React.useState(false);
+
+
+  const [logindialog, setLogindia] = React.useState(false);
   const win = useLocation()
 
   React.useEffect(() => {
@@ -126,9 +147,10 @@ function App() {
     }
 
     window.addEventListener('resize', handleWindowResize);
+    testonline()
     setInterval(function () {
       testonline()
-    }, 1000);
+    }, 5000);
       var url = new URL(window.location.href);
         var c = url.searchParams.get("idtest");
         if (c === '3633d63affc9aa2a30cddae9f683abf7') {
@@ -151,6 +173,11 @@ function App() {
       setFooterH(ref.current.clientHeight)
     } 
   })
+  React.useEffect(() => {
+    if (localStorage.getItem("loged") != null) {
+      setLogin(JSON.parse(localStorage.getItem("loged")))
+    }
+  }, [])
 
   React.useEffect(() => {
     if (localStorage.getItem('tpoplang') != null) {
@@ -235,7 +262,7 @@ function App() {
     return (
       <>
        <Backdrop
-       sx={{ backgroundColor: 'rgba(255,255,255,0.4)', zIndex: 1500, position: 'fixed' }}
+       sx={{ backgroundColor: 'rgba(255,255,255,0.4)', zIndex: 4000, position: 'fixed' }}
        open={true}
        onClick={() => fetchgrand()}
        className='point'
@@ -260,6 +287,59 @@ function App() {
       setLoad(true)
       setTimeout(() => history.push(page), 500);
     }
+  }
+
+  const loginAction = (action) => {
+    let provider = null
+    switch (action) {
+      case 1:
+        provider = new GoogleAuthProvider();
+        break;
+      case 2:
+        provider = new TwitterAuthProvider();
+        break;
+      case 3:
+        provider = new OAuthProvider("yahoo.com");
+        break;
+      default:
+        return;
+    }
+    setLoad(true)
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        fetch('https://apiweb.cpxdev.tk/tpop/checklogin?i=' + result.user.uid  , {
+          method :'post'
+      })
+        .then(response => response.json())
+        .then(data => {
+          setLoad(false)
+          if (data.status == true) {
+            const log = {
+              fromlogin: result.user,
+              fromsystem: data.response
+            }
+            localStorage.setItem("loged", JSON.stringify(log));
+            setLogindia(false)
+            setLogin(log)
+          } else {
+            deleteUser(result.user)
+            Swal.fire({
+              title: 'User not found',
+              text: 'This user don\'t be register to our system. please try again.',
+              icon: 'error'
+            })
+          }
+        });
+      })
+      .catch((error) => {
+        // Handle error.
+        setLoad(false)
+        Swal.fire({
+          title: 'Login error or canceled by user',
+          text: 'For exclusive feature. You need to login Fan Space Membership.',
+          icon: 'warning'
+        })
+      });
   }
 
  
@@ -315,7 +395,7 @@ function App() {
           </Box>
           <Box sx={{ flexGrow: 0, mr: 1 }} className='text-right'>
             <IconButton onClick={handleOpenUserMenu}>
-              <Avatar alt="U" src="/static/images/avatar/2.jpg" />
+              <Avatar alt="U" src={login != null && login.fromlogin.photoURL} />
             </IconButton>
             <Menu
               sx={{ mt: '45px' }}
@@ -334,7 +414,7 @@ function App() {
               onClose={handleCloseUserMenu}
             >
               <MenuItem>
-                  <Typography textAlign="center">{langselect == 'en' ?'Welcome back, ':'ยินดีต้อนรับครับ คุณ'} User</Typography>
+                  <Typography textAlign="center">{langselect == 'en' ?'Welcome back, ':'ยินดีต้อนรับครับ คุณ '} {login != null ? login.fromsystem.memUser :"User"}</Typography>
                 </MenuItem>
                 <Divider />
                 <MenuItem>
@@ -353,12 +433,15 @@ function App() {
                     ))}
                   </TextField>
                 </MenuItem>
-              {login != '' ? (langselect == 'en' ?settingsEn:settingsTh).map((setting) => (
+              {login != null ? (langselect == 'en' ?settingsEn:settingsTh).map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               )) : (
-                <MenuItem onClick={handleCloseUserMenu}>
+                <MenuItem onClick={() => {
+                  setLogindia(true)
+                  handleCloseUserMenu()
+                }}>
                   <Typography textAlign="center">{langselect == 'en' ? 'You are not Login' :'คุณยังไม่ได้เข้าสู่ระบบ'}</Typography>
                 </MenuItem>
               )}
@@ -422,6 +505,9 @@ function App() {
             <Route exact path="/contact">
               <Contact setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
+            <Route exact path="/register">
+              <Regis setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
+            </Route>
           </BasicSwitch>
         </div>
       </Box>
@@ -432,6 +518,38 @@ function App() {
         All artist information and images are the property of the record label owner and the artist themselves. This website is intended to support artists on a non-profit basis.
       </footer>
       </Slide>
+
+
+
+      <Dialog
+        open={logindialog}
+        onClose={() => setLogindia(false)}
+        maxWidth='xl'
+      >
+        <DialogTitle>
+          {langselect == 'th' ? "เข้าสู่ระบบ T-POP Membership (Fan Space Membership)":"Login to T-POP Membership (Fan Space Membership)"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            {langselect == 'th' ? 'การเป็นสมาชิกกับพวกเราจะทำให้คุณได้รับสิทธิประโยชน์มากมาย และฟีเจอร์พิเศษเฉพาะสมาชิกเท่านั้นที่เข้าถึงได้' : 'For membership have received special privillage and exclusive feature of T-POP Megaverse Platform.'}
+          </DialogContentText>
+            <ButtonGroup variant="contained" className='mt-5'>
+              <Button variant='outlined'>{langselect == 'th' ? 'เข้าสู่ระบบโดย' : 'Login as'}</Button>
+              <Button onClick={() => loginAction(1)}><GoogleIcon/>&nbsp;Google Account</Button>
+              <Button onClick={() => loginAction(2)}><TwitterIcon/>&nbsp;Twitter Account</Button>
+              <Button onClick={() => loginAction(3)}>Yahoo Account</Button>
+            </ButtonGroup>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => {
+            setLogindia(false);
+            changeroute('/register');
+          }}>Register</Button>
+          <Button onClick={() => setLogindia(false)} autoFocus>
+            Login
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }

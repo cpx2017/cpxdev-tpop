@@ -1,0 +1,56 @@
+{
+    "head" :{
+        "th": "ลงทะเบียน Fan Space",
+        "en": "Register Fan Space Membership"
+    },
+    "sub" :{
+        "th": "คุณสามารถใช้งาน Exclusive feature เฉพาะสมาชิกบนทุกบริการของ Fan Space Platform ได้หลังจากลงทะเบียน Fan Space Membership แล้ว โดยไม่จำเป็นต้องจำรหัสผ่าน",
+        "en": "One registration, for all Fan Space platform. No password need"
+    },
+    "nameField" :{
+        "th": "ชื่อผู้ใช้",
+        "en": "Username"
+    },
+    "emailField" :{
+        "th": "อีเมล์ที่ใช้งาน",
+        "en": "Username"
+    },
+    "loginOption" :{
+        "th": "บริการบัญชีที่คุณต้องการเชื่อมต่อ",
+        "en": "Service which you want to linked"
+    },
+    "loginNotes" :{
+        "th": "หมายเหตุ: คุณสามารถเชื่อมกับบัญชีอื่นๆ ในภายหลังการลงทะเบียนได้",
+        "en": "Notes: You can link to another account after login complete."
+    },
+    "btn" :{
+        "th": "ลงทะเบียน",
+        "en": "Register"
+    },
+    "msg":{
+        "regiserror": {
+            "th":"พบข้อผิดพลาดระหว่างการลงทะเบียน กรุณาลองอีกครั้งในภายหลัง หรือติดต่อเจ้าหน้าที่",
+            "en":"Please take for a while or contact us."
+        },
+        "regisexist": {
+            "th":"คุณเคยเชื่อมบัญชีนี้กับแอคเคาท์อื่นแล้ว กรุณาลองใหม่อีกครั้ง",
+            "en":"Please choose another account or service."
+        },
+        "regisdone": {
+            "th":"ลงทะเบียนสำเร็จแล้ว",
+            "en":"Registration complete."
+        },
+        "emailinvalid": {
+            "th":"ที่อยู่อีเมล์ไม่ถูกต้อง กรุณาตรวจสอบอีกครั้ง",
+            "en":"Please check email and try again."
+        },
+        "emptyfield": {
+            "th":"กรุณากรอกข้อมูลให้ครบ",
+            "en":"Please check name and email field is not empty and try again."
+        },
+        "chooseservice": {
+            "th":"กรุณาเลือกบริการที่ต้องการเชื่อมบัญชี",
+            "en":"Please choose account service to continue."
+        }
+    }
+}

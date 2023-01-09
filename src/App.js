@@ -205,6 +205,20 @@ function App() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  
+  const Signout = () => {
+    setLogin(null)
+    localStorage.removeItem("loged")
+  }
+
+  const memberOptionAct = (act) => {
+    setAnchorElUser(null);
+    switch(act){
+      case 'Logout':
+        Signout()
+        break;
+    }
+  };
 
 
   const handleDrawerToggle = () => {
@@ -342,6 +356,7 @@ function App() {
       });
   }
 
+
  
   var metaThemeColor = document.querySelector("meta[name=theme-color]");
   metaThemeColor.setAttribute("content", 'rgb(25, 118, 210)');
@@ -433,8 +448,8 @@ function App() {
                     ))}
                   </TextField>
                 </MenuItem>
-              {login != null ? (langselect == 'en' ?settingsEn:settingsTh).map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+              {login != null ? (langselect == 'en' ?settingsEn:settingsTh).map((setting, i) => (
+                <MenuItem key={setting} onClick={() => memberOptionAct(settingsEn[i])}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               )) : (
@@ -505,9 +520,13 @@ function App() {
             <Route exact path="/contact">
               <Contact setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
-            <Route exact path="/register">
-              <Regis setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
-            </Route>
+            {
+              login == null && (
+                <Route exact path="/register">
+                  <Regis setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
+                </Route>
+              )
+            }
           </BasicSwitch>
         </div>
       </Box>
@@ -533,7 +552,7 @@ function App() {
           <DialogContentText id="alert-dialog-description">
             {langselect == 'th' ? 'การเป็นสมาชิกกับพวกเราจะทำให้คุณได้รับสิทธิประโยชน์มากมาย และฟีเจอร์พิเศษเฉพาะสมาชิกเท่านั้นที่เข้าถึงได้' : 'For membership have received special privillage and exclusive feature of T-POP Megaverse Platform.'}
           </DialogContentText>
-            <ButtonGroup variant="contained" className='mt-5'>
+            <ButtonGroup variant="contained" orientation={width > 750 ? "horizontal" : "vertical"} className='mt-5'>
               <Button variant='outlined'>{langselect == 'th' ? 'เข้าสู่ระบบโดย' : 'Login as'}</Button>
               <Button onClick={() => loginAction(1)}><GoogleIcon/>&nbsp;Google Account</Button>
               <Button onClick={() => loginAction(2)}><TwitterIcon/>&nbsp;Twitter Account</Button>

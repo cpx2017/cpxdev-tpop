@@ -38,6 +38,7 @@ import {
   Link,
   Switch as BasicSwitch,
   useHistory,
+  useRouter
 } from "react-router-dom";
 
 import Home from './component/home';
@@ -60,11 +61,12 @@ import {
 import auth from "./fbindex";
 
 import 'sweetalert2/dist/sweetalert2.min.css'
+import Communitymain from './component/community';
 
 const drawerWidth = 240;
-const navItemsLink = ['', 'artists', 'news', 'songlist', 'about', 'contact'];
-const navItemsEn = ['Home', 'Artists', 'News', 'Top Songs', 'About', 'Contact us'];
-const navItemsTh = ['หน้าหลัก', 'ค้นหาศิลปิน', 'ข่าวสาร', 'อันดับเพลงสูงสุด', 'เกี่ยวกับ', 'ติดต่อเรา'];
+const navItemsLink = ['', 'artists', 'news', 'songlist', 'community', 'about', 'contact'];
+const navItemsEn = ['Home', 'Artists', 'News', 'Top Songs', 'Community', 'About', 'Contact us'];
+const navItemsTh = ['หน้าหลัก', 'ค้นหาศิลปิน', 'ข่าวสาร', 'อันดับเพลงสูงสุด', 'พูดคุย', 'เกี่ยวกับ', 'ติดต่อเรา'];
 const LangList = [{
   id:'en',
   label: 'English'
@@ -102,7 +104,9 @@ function App() {
 
 
   const [logindialog, setLogindia] = React.useState(false);
+  const [loginLoad, setLoginLoad] = React.useState(null);
   const win = useLocation()
+
 
   React.useEffect(() => {
     document.title = page + " | T-POP Megaverse Platform"
@@ -153,14 +157,18 @@ function App() {
     }, 5000);
       var url = new URL(window.location.href);
         var c = url.searchParams.get("idtest");
-        if (c === '3633d63affc9aa2a30cddae9f683abf7') {
-          setGrand(true)
-        } else {
+        // if (c === '3633d63affc9aa2a30cddae9f683abf7') {
+        //   setGrand(true)
+        // } else {
+        //   fetchgrand()
+        //   setInterval(function () {
+        //     setFetGrandcount(0)
+        //   }, 120000);
+        // }
           fetchgrand()
           setInterval(function () {
             setFetGrandcount(0)
           }, 120000);
-        }
 
     return () => {
       window.removeEventListener('resize', handleWindowResize);
@@ -318,7 +326,7 @@ function App() {
       default:
         return;
     }
-    setLoad(true)
+    setLoginLoad(true)
     signInWithPopup(auth, provider)
       .then((result) => {
         fetch('https://apiweb.cpxdev.tk/tpop/checklogin?i=' + result.user.uid  , {
@@ -326,7 +334,7 @@ function App() {
       })
         .then(response => response.json())
         .then(data => {
-          setLoad(false)
+          setLoginLoad(false)
           if (data.status == true) {
             const log = {
               fromlogin: result.user,
@@ -339,7 +347,7 @@ function App() {
             deleteUser(result.user)
             Swal.fire({
               title: 'User not found',
-              text: 'This user don\'t be register to our system. please try again.',
+              text: langselect == 'th' ? "บริการบัญชีนี้ไม่ได้มีการเชื่อมโยงกับบัญชีผู้ใช้ใดๆ กรุณาลงทะเบียน" : "This user don't be register to our system. please try again.",
               icon: 'error'
             })
           }
@@ -350,12 +358,11 @@ function App() {
         setLoad(false)
         Swal.fire({
           title: 'Login error or canceled by user',
-          text: 'For exclusive feature. You need to login Fan Space Membership.',
+          text: langselect == 'th' ? "เพื่อรับสิทธิประโยชน์เฉพาะสมาชิก กรุณาล็อกอินเพื่อเข้าใช้งาน" : "For exclusive feature. You need to login Fan Space Membership.",
           icon: 'warning'
         })
       });
   }
-
 
  
   var metaThemeColor = document.querySelector("meta[name=theme-color]");
@@ -368,6 +375,14 @@ function App() {
       transitionDuration={{ appear: done ? 300 : 0, enter: done ? 300 : 0, exit: 800 }}
       >
       <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' width='60px' />
+      </Backdrop>
+      <Backdrop
+        sx={{ zIndex: 2000, position: 'fixed' }}
+        open={loginLoad}
+        className='text-light'
+        >
+        <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' width='60px' />
+        {langselect == 'th' ? 'กำลังเข้าสู่ระบบ กรุณารอสักครู่': 'Please wait for a moment'}
       </Backdrop>
       <Slide in={!loadsession} direction="down">
       <AppBar component="nav" className='appbaredge'>
@@ -514,6 +529,9 @@ function App() {
             <Route exact path="/songlist">
               <TopChart setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
+            <Route exact path="/community">
+              <Communitymain setLoad={(val) => setLoad(val)} lang={langselect} login={login} setPage={(val) => setPage(val)} />
+            </Route>
             <Route exact path="/about">
               <About setLoad={(val) => setLoad(val)} lang={langselect} setPage={(val) => setPage(val)} />
             </Route>
@@ -552,7 +570,7 @@ function App() {
           <DialogContentText id="alert-dialog-description">
             {langselect == 'th' ? 'การเป็นสมาชิกกับพวกเราจะทำให้คุณได้รับสิทธิประโยชน์มากมาย และฟีเจอร์พิเศษเฉพาะสมาชิกเท่านั้นที่เข้าถึงได้' : 'For membership have received special privillage and exclusive feature of T-POP Megaverse Platform.'}
           </DialogContentText>
-            <ButtonGroup variant="contained" orientation={width > 750 ? "horizontal" : "vertical"} className='mt-5'>
+            <ButtonGroup variant="contained" fullWidth={width > 750 ? false : true} orientation={width > 750 ? "horizontal" : "vertical"} className='mt-5'>
               <Button variant='outlined'>{langselect == 'th' ? 'เข้าสู่ระบบโดย' : 'Login as'}</Button>
               <Button onClick={() => loginAction(1)}><GoogleIcon/>&nbsp;Google Account</Button>
               <Button onClick={() => loginAction(2)}><TwitterIcon/>&nbsp;Twitter Account</Button>

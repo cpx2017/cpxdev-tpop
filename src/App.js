@@ -297,7 +297,7 @@ function App() {
         .then(response => response.json())
         .then(data => {
           setLoginLoad(false)
-          if (data.status == true) {
+          if (data.status == 0) {
             const log = {
               fromlogin: result.user,
               fromsystem: data.response
@@ -305,11 +305,23 @@ function App() {
             localStorage.setItem("loged", JSON.stringify(log));
             setLogindia(false)
             setLogin(log)
-          } else {
+          } else if (data.status == 1) {
             deleteUser(result.user)
             Swal.fire({
               title: 'User not found',
               text: langselect == 'th' ? "บริการบัญชีนี้ไม่ได้มีการเชื่อมโยงกับบัญชีผู้ใช้ใดๆ กรุณาลงทะเบียน" : "This user don't be register to our system. please try again.",
+              icon: 'error'
+            })
+          } else if (data.status == 3) {
+            Swal.fire({
+              title: 'Membership System is under maintenance',
+              text: langselect == 'th' ? "อยู่ระหว่างการปรับปรุงระบบ คุณยังไม่สามารถเข้าสู่ระบบได้ในขณะนี้ ขออภัยในความไม่สะดวก" : "Membership is under maintenance. You cannot login right now. Sorry for inconvenience",
+              icon: 'error'
+            })
+          } else {
+            Swal.fire({
+              title: 'System error',
+              text: langselect == 'th' ? "พบข้อผิดพลาดเนื่องในระบบ กรุณาแจ้งเจ้าหน้าที่" : "Something went worng with service. Please contact us for find solution.",
               icon: 'error'
             })
           }

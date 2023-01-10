@@ -155,20 +155,7 @@ function App() {
     setInterval(function () {
       testonline()
     }, 5000);
-      var url = new URL(window.location.href);
-        var c = url.searchParams.get("idtest");
-        // if (c === '3633d63affc9aa2a30cddae9f683abf7') {
-        //   setGrand(true)
-        // } else {
-        //   fetchgrand()
-        //   setInterval(function () {
-        //     setFetGrandcount(0)
-        //   }, 120000);
-        // }
-          fetchgrand()
-          setInterval(function () {
-            setFetGrandcount(0)
-          }, 120000);
+        setGrand(true)
 
     return () => {
       window.removeEventListener('resize', handleWindowResize);
@@ -252,31 +239,6 @@ function App() {
     )
   }
 
-  if (!offline && !grandopen) {
-    var metaThemeColor = document.querySelector("meta[name=theme-color]");
-    metaThemeColor.setAttribute("content", '#fff');
-    return (
-      <>
-       <Backdrop
-       sx={{ backgroundColor: 'rgba(255,255,255,0.4)', zIndex: 1500, position: 'fixed' }}
-       open={true}
-       onClick={() => fetchgrand()}
-       className='point'
-       >
-       <img src='https://cdn.jsdelivr.net/gh/cpx2017/cpxcdnbucket@main/main/tpopplay-load.svg' width='60px' />
-      <div>
-        You are at T-POP Megaverse Platform. But system is under testing. Please wait until {moment.unix(eventTime).local().locale('en').format("DD MMMM YYYY HH:mm:ss")}. or Click here to fetching
-      </div>
-       </Backdrop>
-         <Snackbar anchorOrigin={{horizontal: "center",vertical: "top" }} open={block} onClose={() => setBlock(false)} sx={{zIndex: 5000}} autoHideDuration={5000}>
-                    <Alert className='point' severity="error">
-                        <AlertTitle>Too many request!</AlertTitle>
-                        Calm down and relax. You will be meet something special. It's not too long
-                    </Alert>
-                </Snackbar>
-      </>
-    )
-  }
 
   if (!grandopen) {
     var metaThemeColor = document.querySelector("meta[name=theme-color]");
